@@ -1,0 +1,15 @@
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\bin\Debug\net6.0\1_HelloWorld.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\bin\Debug\net6.0\1_HelloWorld.deps.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\bin\Debug\net6.0\1_HelloWorld.runtimeconfig.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\bin\Debug\net6.0\1_HelloWorld.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\bin\Debug\net6.0\1_HelloWorld.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\1_HelloWorld.csproj.AssemblyReference.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\1_HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\1_HelloWorld.AssemblyInfoInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\1_HelloWorld.AssemblyInfo.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\1_HelloWorld.csproj.CoreCompileInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\1_HelloWorld.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\refint\1_HelloWorld.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\1_HelloWorld.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\1_HelloWorld.genruntimeconfig.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Module1\1_HelloWorld\obj\Debug\net6.0\ref\1_HelloWorld.dll
