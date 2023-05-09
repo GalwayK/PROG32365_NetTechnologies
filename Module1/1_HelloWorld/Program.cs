@@ -3,6 +3,8 @@
     internal class Program
     {
         // The main method in C# uses a capital Main. Strings in C# are a primitive type by default, not a class. 
+        // Like most other languages however, there are classes for each data type. 
+
         static void Main(string[] args)
         {
             // Console is the class for operating on the command line. 
