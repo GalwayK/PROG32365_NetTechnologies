@@ -60,7 +60,7 @@ namespace Lesson_1
                     }
                     Console.WriteLine("Guess again!");
                 }
-                Console.WriteLine("You guessed correct!\nPlay again (y): ");
+                Console.Write("You guessed correct!\nPlay again (y): ");
                 char? chaAgain = char.Parse(Console.ReadLine().Substring(0, 1).ToLower());
                 if (chaAgain != 'y')
                 {
