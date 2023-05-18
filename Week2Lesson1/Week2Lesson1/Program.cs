@@ -6,7 +6,15 @@
         static void Main(string[] args)
         {
             // Exercises.PrintDiscount();
-            CalculateInterestRate();
+            // CalculateInterestRate();
+            // ExerciseBMI.Exercise();
+            // ExerciseLooping.BeginDaLoop();
+            // Lesson1Part2.ReferenceParameters();
+            // Lesson1Part2.OutputParameters();
+            // Lesson1Part2.ExerciseTestString();
+            // TemperatureConverter.TempConvert();
+            // ExerciseExponation.ExerciseExponents();
+            Printer.PrintLine("Hello", " There", " Neighbour!");
         }
 
         private static void CalculateInterestRate()
