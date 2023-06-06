@@ -1,0 +1,15 @@
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\bin\Debug\net6.0\WeekTwoReview.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\bin\Debug\net6.0\WeekTwoReview.deps.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\bin\Debug\net6.0\WeekTwoReview.runtimeconfig.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\bin\Debug\net6.0\WeekTwoReview.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\bin\Debug\net6.0\WeekTwoReview.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\WeekTwoReview.csproj.AssemblyReference.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\WeekTwoReview.GeneratedMSBuildEditorConfig.editorconfig
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\WeekTwoReview.AssemblyInfoInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\WeekTwoReview.AssemblyInfo.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\WeekTwoReview.csproj.CoreCompileInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\WeekTwoReview.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\refint\WeekTwoReview.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\WeekTwoReview.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\WeekTwoReview.genruntimeconfig.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoReview\WeekTwoReview\obj\Debug\net6.0\ref\WeekTwoReview.dll

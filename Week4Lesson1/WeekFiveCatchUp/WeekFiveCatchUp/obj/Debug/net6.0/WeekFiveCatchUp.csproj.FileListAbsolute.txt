@@ -1,0 +1,15 @@
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\bin\Debug\net6.0\WeekFiveCatchUp.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\bin\Debug\net6.0\WeekFiveCatchUp.deps.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\bin\Debug\net6.0\WeekFiveCatchUp.runtimeconfig.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\bin\Debug\net6.0\WeekFiveCatchUp.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\bin\Debug\net6.0\WeekFiveCatchUp.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\WeekFiveCatchUp.csproj.AssemblyReference.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\WeekFiveCatchUp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\WeekFiveCatchUp.AssemblyInfoInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\WeekFiveCatchUp.AssemblyInfo.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\WeekFiveCatchUp.csproj.CoreCompileInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\WeekFiveCatchUp.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\refint\WeekFiveCatchUp.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\WeekFiveCatchUp.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\WeekFiveCatchUp.genruntimeconfig.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\WeekFiveCatchUp\WeekFiveCatchUp\obj\Debug\net6.0\ref\WeekFiveCatchUp.dll

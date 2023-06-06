@@ -1,0 +1,15 @@
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\WeekTwoLessonTwo.csproj.AssemblyReference.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\WeekTwoLessonTwo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\WeekTwoLessonTwo.AssemblyInfoInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\WeekTwoLessonTwo.AssemblyInfo.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\WeekTwoLessonTwo.csproj.CoreCompileInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\bin\Debug\net6.0\WeekTwoLessonTwo.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\bin\Debug\net6.0\WeekTwoLessonTwo.deps.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\bin\Debug\net6.0\WeekTwoLessonTwo.runtimeconfig.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\bin\Debug\net6.0\WeekTwoLessonTwo.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\bin\Debug\net6.0\WeekTwoLessonTwo.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\WeekTwoLessonTwo.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\refint\WeekTwoLessonTwo.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\WeekTwoLessonTwo.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\WeekTwoLessonTwo.genruntimeconfig.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\WeekTwoLessonTwo\WeekTwoLessonTwo\obj\Debug\net6.0\ref\WeekTwoLessonTwo.dll

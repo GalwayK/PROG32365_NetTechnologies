@@ -1,0 +1,15 @@
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\bin\Debug\net6.0\Bank.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\bin\Debug\net6.0\Bank.deps.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\bin\Debug\net6.0\Bank.runtimeconfig.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\bin\Debug\net6.0\Bank.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\bin\Debug\net6.0\Bank.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\Bank.csproj.AssemblyReference.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\Bank.GeneratedMSBuildEditorConfig.editorconfig
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\Bank.AssemblyInfoInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\Bank.AssemblyInfo.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\Bank.csproj.CoreCompileInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\Bank.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\refint\Bank.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\Bank.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\Bank.genruntimeconfig.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Bank\Bank\obj\Debug\net6.0\ref\Bank.dll
