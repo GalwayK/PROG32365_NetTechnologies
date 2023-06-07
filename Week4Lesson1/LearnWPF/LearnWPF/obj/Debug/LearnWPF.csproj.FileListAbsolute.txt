@@ -1,0 +1,16 @@
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\bin\Debug\LearnWPF.exe.config
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\bin\Debug\LearnWPF.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\bin\Debug\LearnWPF.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF.csproj.AssemblyReference.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF.csproj.SuggestedBindingRedirects.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\MainWindow.g.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\App.g.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF_MarkupCompile.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF_MarkupCompile.lref
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\MainWindow.baml
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF.g.resources
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF.Properties.Resources.resources
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF.csproj.GenerateResource.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF.csproj.CoreCompileInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\LearnWPF\LearnWPF\obj\Debug\LearnWPF.pdb
