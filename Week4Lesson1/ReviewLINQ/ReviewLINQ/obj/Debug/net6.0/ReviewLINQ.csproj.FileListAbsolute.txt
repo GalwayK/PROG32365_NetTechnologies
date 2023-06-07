@@ -1,0 +1,15 @@
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\bin\Debug\net6.0\ReviewLINQ.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\bin\Debug\net6.0\ReviewLINQ.deps.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\bin\Debug\net6.0\ReviewLINQ.runtimeconfig.json
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\bin\Debug\net6.0\ReviewLINQ.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\bin\Debug\net6.0\ReviewLINQ.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\ReviewLINQ.csproj.AssemblyReference.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\ReviewLINQ.GeneratedMSBuildEditorConfig.editorconfig
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\ReviewLINQ.AssemblyInfoInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\ReviewLINQ.AssemblyInfo.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\ReviewLINQ.csproj.CoreCompileInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\ReviewLINQ.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\refint\ReviewLINQ.dll
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\ReviewLINQ.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\ReviewLINQ.genruntimeconfig.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\ReviewLINQ\ReviewLINQ\obj\Debug\net6.0\ref\ReviewLINQ.dll
