@@ -1,23 +1,140 @@
 ﻿using System.Collections;
 using System.Numerics;
 
-namespace ReviewCollectionsAndLINQ
+namespace ReviewCollectionsAndGenerics
 {
     internal class Program
     {
+        public static string ReadInput(string strPrompt)
+        {
+            Console.Write(strPrompt);
+            string varInput = Console.ReadLine();
+            return varInput;
+        }
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Reviewing Collections and LINQ!");
+            Console.WriteLine("Reviewing Collections and Generics!");
             // CollectionsReview.ReviewCollections();
             // CollectionsReview.ReviewDictionaries();
             // CollectionsReview.ReviewCountWords();
-            CollectionsReview.ReviewQueuesAndStacks();
+            // CollectionsReview.ReviewQueuesAndStacks();
+            //CollectionsReview.ReviewStackReverseWord();
+            //CollectionsReview.ReviewConvertDecimalToBinary();
+            //CollectionsReview.ReviewTicketsQueue();
+
+            // GenericsReview.ReviewGenericsComparison();
+            // GenericsReview.ExercisePrintArray();
+            GenericsReview.ExerciseSearchArray();
         }
+    }
+
+    internal class GenericsReview
+    { 
+        private GenericsReview() { }
+
+        public static void ExerciseSearchArray()
+        {
+            int SearchArray<T>(T[] arrValues, T valueSearch)
+            {
+                int numIndex = 0;
+                foreach(T valueCurrent in arrValues)
+                {
+                    if (valueCurrent.Equals(valueSearch))
+                    {
+                        return numIndex;
+                    }
+                    ++numIndex;
+                }
+                return -1;
+            }
+
+            int[] arrNumbers = { 1, 2, 3, 4, 5 };
+            int numIndex = SearchArray(arrNumbers, 5);
+            Console.WriteLine($"The index of {5} is {numIndex}");
+        }
+
+        public static void ExercisePrintArray()
+        {
+            void PrintArray<L>(L[] arrValues)
+            {
+                void PrintValue<L>(L value)
+                {
+                    Console.WriteLine(value);
+                }
+
+                foreach(L value in arrValues)
+                {
+                    PrintValue(value);
+                }
+            }
+
+            int[] arrNumbers = { 1, 2, 3, 4, 5};
+            string[] arrStrings = { "Hello", "Goodbye", "Whatever"};
+            PrintArray(arrNumbers);
+            PrintArray(arrStrings);
+        }
+
+        public static void ReviewGenericsComparison()
+        {
+            bool CompareTwoValues<T, V>(T valueOne, T valueTwo, V statement)
+            {
+                Console.WriteLine(statement);
+                return valueOne.Equals(valueTwo);
+            }
+
+            Console.WriteLine($"1 == 2: {CompareTwoValues(1, 2, "Comparing integers!")}");
+            Console.WriteLine($"\"Hello\" == \"Hello\": {CompareTwoValues<string, int>("Hello", "Hello", 1)}");
+
+            // Console.WriteLine($"Cannot do this: 1 == \"Hello \": {CompareTwoValues("Hello", 1)}");
+        }
+
     }
 
     internal class CollectionsReview
     {
         private CollectionsReview() { }
+
+        public static void ReviewTicketsQueue()
+        {
+            const int INT_MAX_TICKETS = 3;
+            Queue<KeyValuePair<int, string>> queueTickets = new Queue<KeyValuePair<int, string>>();
+            int intTicketNum = 1;
+
+            void HandoutTickets(ref int intTicketNum)
+            {
+                Console.Write("Weclome, enter your name: ");
+                string strCustName = Console.ReadLine();
+                Console.WriteLine($"Welcome {strCustName}, your ticket number is #{intTicketNum}");
+                KeyValuePair<int, string> mapCustomer = new KeyValuePair<int, string>(intTicketNum, strCustName);
+                queueTickets.Enqueue(mapCustomer);
+
+                if (intTicketNum++ >= INT_MAX_TICKETS)
+                {
+                    Console.WriteLine("All tickets booked, departing!");
+                }
+                else
+                {
+                    Console.WriteLine("Next customer!");
+
+                    HandoutTickets(ref intTicketNum);
+                }
+            }
+
+            void PrintTickets()
+            {
+                KeyValuePair<int, string> mapCustomer = queueTickets.Dequeue();
+                Console.WriteLine($"#{mapCustomer.Key}: {mapCustomer.Value}");
+                
+                if (queueTickets.Count > 0)
+                {
+                    PrintTickets();
+                }
+            }
+
+            HandoutTickets(ref intTicketNum);
+            PrintTickets();
+        }
 
         public static void ReviewDictionaries()
         {
@@ -42,6 +159,80 @@ namespace ReviewCollectionsAndLINQ
                 Console.Write(entry.Value);
             }
             Console.WriteLine();
+        }
+
+        public static void ReviewConvertDecimalToBinary()
+        {
+            int ReadInput()
+            {
+                int numInput;
+                try
+                {
+                    numInput = Convert.ToInt32(Program.ReadInput("Please enter a positive integer: "));
+                    if (numInput < 0)
+                    {
+                        throw new Exception("Invalid input, please try again!");
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                    numInput = ReadInput();
+                }
+                return numInput;
+            }
+
+            void PrintStack(ref Stack<int> stackBinary)
+            {
+                int numElements = stackBinary.Count;
+                for (int i = 0; i < numElements; i++) 
+                {
+                    Console.Write($"{stackBinary.Pop()}");
+
+                }
+                Console.WriteLine();
+            }
+
+            void ConvertToBinary(int numDecimal, ref Stack<int> stackBinary)
+            {
+                int numRemainder = numDecimal % 2;
+                int numDividend = numDecimal / 2;
+
+                stackBinary.Push(numRemainder);
+
+                if (numDividend != 0)
+                {
+                    ConvertToBinary(numDividend, ref stackBinary);
+                }
+            }
+
+            int numInput = ReadInput();
+            Console.WriteLine(numInput);
+            Stack<int> stackBinary = new Stack<int>();
+            ConvertToBinary(numInput, ref stackBinary);
+            Console.Write($"Printing!\nDecimal Number: {numInput}\nBinary Number: ");
+            PrintStack(ref stackBinary);
+            
+        }
+
+        public static void ReviewStackReverseWord()
+        {
+
+            Console.Write("Please enter a statement: ");
+            string strSentence = Console.ReadLine();
+
+            Stack<char> stackChars = new Stack<char>();
+
+            foreach(char letter in strSentence)
+            {
+                stackChars.Push(letter);
+            }
+
+            Console.Write("Reversed statement: ");
+            foreach(char letter in stackChars)
+            {
+                Console.Write(letter);
+            }
         }
 
         public static void ReviewCountWords()

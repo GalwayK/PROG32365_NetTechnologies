@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Week4Lesson1\\ReviewCollectionsAndLINQ\\ReviewCollectionsAndLINQ\\ReviewCollectionsAndLINQ.csproj",
-      "projectName": "ReviewCollectionsAndLINQ",
-      "projectPath": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Week4Lesson1\\ReviewCollectionsAndLINQ\\ReviewCollectionsAndLINQ\\ReviewCollectionsAndLINQ.csproj",
+      "projectUniqueName": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Week4Lesson1\\ReviewCollectionsAndLINQ\\ReviewCollectionsAndLINQ\\ReviewCollectionsAndGenerics.csproj",
+      "projectName": "ReviewCollectionsAndGenerics",
+      "projectPath": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Week4Lesson1\\ReviewCollectionsAndLINQ\\ReviewCollectionsAndLINQ\\ReviewCollectionsAndGenerics.csproj",
       "packagesPath": "C:\\Users\\klg1\\.nuget\\packages\\",
       "outputPath": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Week4Lesson1\\ReviewCollectionsAndLINQ\\ReviewCollectionsAndLINQ\\obj\\",
       "projectStyle": "PackageReference",
