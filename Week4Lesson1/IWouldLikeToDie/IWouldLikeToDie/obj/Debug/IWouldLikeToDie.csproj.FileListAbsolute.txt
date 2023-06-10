@@ -1,0 +1,16 @@
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\bin\Debug\IWouldLikeToDie.exe.config
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\bin\Debug\IWouldLikeToDie.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\bin\Debug\IWouldLikeToDie.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie.csproj.AssemblyReference.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie.csproj.SuggestedBindingRedirects.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\MainWindow.g.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\App.g.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie_MarkupCompile.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie_MarkupCompile.lref
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\MainWindow.baml
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie.g.resources
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie.Properties.Resources.resources
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie.csproj.GenerateResource.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie.csproj.CoreCompileInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\IWouldLikeToDie\IWouldLikeToDie\obj\Debug\IWouldLikeToDie.pdb

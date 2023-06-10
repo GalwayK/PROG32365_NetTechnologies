@@ -1,0 +1,26 @@
+﻿<Window x:Class="MouseEvents.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MouseEvents"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="windowLoaded" MouseLeftButtonUp="leftMouseUp" MouseRightButtonDown="rightMouseUp" MouseMove="showMousePosition">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="123*"/>
+            <ColumnDefinition Width="37*"/>
+        </Grid.ColumnDefinitions>
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="109,139,0,0" VerticalAlignment="Top" Width="597" Maximum="100" Minimum="0" TickFrequency="2" Grid.ColumnSpan="2"/>
+        <RepeatButton x:Name="btnClick" HorizontalAlignment="Left" Margin="209,270,0,0" VerticalAlignment="Top" Height="40" Width="139" Content="Click Me" Click="btnClick_Click">
+
+        </RepeatButton>
+        <RepeatButton x:Name="btnTouch" HorizontalAlignment="Left" Margin="459,265,0,0" VerticalAlignment="Top" Height="40" Width="139" Content="Touch Me" MouseEnter="btnTouch_Entered"/>
+        <Label x:Name="mainLabel" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="266,49,0,0" VerticalAlignment="Top" Width="268"/>
+        <Label/>
+
+        <Label x:Name="mouseLabel" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="266,79,0,0" VerticalAlignment="Top" Width="268"/>
+        <Label/>
+
+    </Grid>
+</Window>

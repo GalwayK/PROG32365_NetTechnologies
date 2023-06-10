@@ -1,0 +1,16 @@
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\bin\Debug\MouseEvents.exe.config
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\bin\Debug\MouseEvents.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\bin\Debug\MouseEvents.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents.csproj.AssemblyReference.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents.csproj.SuggestedBindingRedirects.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MainWindow.g.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\App.g.cs
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents_MarkupCompile.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents_MarkupCompile.lref
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MainWindow.baml
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents.g.resources
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents.Properties.Resources.resources
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents.csproj.GenerateResource.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents.csproj.CoreCompileInputs.cache
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents.exe
+C:\Semester4SDNE\PROG32365_NetTechnologies\Week4Lesson1\MouseEvents\MouseEvents\obj\Debug\MouseEvents.pdb
