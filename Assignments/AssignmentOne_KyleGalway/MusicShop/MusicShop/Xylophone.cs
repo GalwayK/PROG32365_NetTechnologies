@@ -1,4 +1,10 @@
-﻿namespace MusicShop
+﻿/*
+ * Assignment: 1
+ * Name: Kyle Galway
+ * ID: 991418738
+ * This is the abstract class for creating Xylophone objects.
+*/
+namespace MusicShop
 {
     internal class Xylophone: PercussionInstrument
     {

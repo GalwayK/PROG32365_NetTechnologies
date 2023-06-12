@@ -1,4 +1,11 @@
-﻿namespace MusicShop
+﻿/*
+ * Assignment: 1
+ * Name: Kyle Galway
+ * ID: 991418738
+ * This is the main class for accessing the music shop model for 
+ * recieving console input and displaying console output. 
+*/
+namespace MusicShop
 {
     internal class AssignmentOneKyleGalway
     {
@@ -18,13 +25,9 @@
 
             PrintInstrumentsInOrder();
 
-            PrintInstrumentFamilySound();
+            AltPrintInstrumentFamilySound();
 
-            foreach (MusicalInstrument instrument in musicShop.ListInstruments)
-            {
-                PrintInstrument(instrument);
-                Console.WriteLine();
-            }
+            PrintAllInstruments();
         }
 
         public static void CreateInstruments()
@@ -35,8 +38,10 @@
             {
                 decimal numPrice = GetDecimalInput($"Please enter the price " +
                     $"for {mapInstrumentFactory.Key}: ");
+
                 MusicalInstrument instrument = 
                     mapInstrumentFactory.Value(numPrice);
+
                 musicShop.ListInstruments.Add(instrument);
             }
             Console.WriteLine();
@@ -44,26 +49,13 @@
 
         public static void SortInstruments()
         {
-            musicShop.ListInstruments.Sort();
-        }
-
-        public static List<MusicalInstrument> CopyAndSortListInstruments()
-        {
-            List<MusicalInstrument> copyListInstruments = new
-                List<MusicalInstrument>(musicShop.ListInstruments);
-
-            copyListInstruments.Sort();
-
-            return copyListInstruments;
+            musicShop.SortInstruments();
         }
 
         public static void PrintMostExpensiveInstrument()
         {
-            List<MusicalInstrument> copyListInstruments = 
-                CopyAndSortListInstruments();
-
-            MusicalInstrument expensiveInstrument = 
-                copyListInstruments.First();
+            MusicalInstrument expensiveInstrument =
+                musicShop.PriciestInstrument;
 
             Console.WriteLine($"The most expensive instrument is: " +
                 $"{expensiveInstrument}");
@@ -74,11 +66,8 @@
 
         public static void PrintLeastExpensiveInstrument()
         {
-            List<MusicalInstrument> copyListInstruments =
-                CopyAndSortListInstruments();
-
             MusicalInstrument cheapestInstrument =
-                copyListInstruments.Last();
+                musicShop.CheapestInstrument;
 
             Console.WriteLine($"The least expensive instrument is: " +
                 $"{cheapestInstrument}");
@@ -145,6 +134,7 @@
                 return PrintFamilySound;
             }
 
+
             Action<string> CreatePrintFamilyNamesAction()
             {
                 int numFamily = 1;
@@ -166,6 +156,47 @@
             Console.WriteLine();
         }
 
+        public static void AltPrintInstrumentFamilySound()
+        {
+            Action<MusicalInstrument> CreatePrintFamilySoundAction()
+            {
+                Action<MusicalInstrument> PrintFamilySound = (instrument) =>
+                {
+                    Console.WriteLine($"{instrument} makes sound by" +
+                        $" {instrument.Sound}");
+                };
+                return PrintFamilySound;
+            }
+
+
+            Action<string> CreatePrintFamilyNamesAction()
+            {
+                int numFamily = 1;
+
+                void printFamilyName(string familyName)
+                {
+                    Console.WriteLine($"{numFamily++}. {familyName}");
+                }
+                return printFamilyName;
+            }
+
+            Action<string> PrintFamilyName = CreatePrintFamilyNamesAction();
+            Console.WriteLine("Instrument Families!");
+            musicShop.GetInstrumentFamilies().ForEach(PrintFamilyName);
+
+            string strFamily =
+                    GetStringInput("Please enter an instrument family: ")
+                    .ToLower();
+
+            List<MusicalInstrument> familyInstruments = musicShop.GetInstrumentsByFamilyName(strFamily);
+
+            Action<MusicalInstrument> PrintFamilySound =
+                CreatePrintFamilySoundAction();
+
+            familyInstruments.ForEach(PrintFamilySound);
+            Console.WriteLine();
+        }
+
         public static void PrintInstrument(MusicalInstrument instrument)
         {
             void PrintStandard()
@@ -184,7 +215,7 @@
             {
                 if (instrument is IFixable)
                 {
-                    IFixable fixableInstrument = (IFixable)instrument;
+                    IFixable fixableInstrument = instrument as IFixable;
 
                     Console.WriteLine($"{instrument} is fixed by: {fixableInstrument.HowToFix()}");
                 }
@@ -194,7 +225,7 @@
             {
                 if (instrument is IPlayable)
                 {
-                    IPlayable playableInstrument = (IPlayable)instrument;
+                    IPlayable playableInstrument = instrument as IPlayable;
 
                     Console.WriteLine($"{instrument} is played by: " +
                         $"{playableInstrument.HowToPlay()}");
@@ -206,6 +237,16 @@
             PrintPlayable();
 
             PrintFixable();
+        }
+
+        public static void PrintAllInstruments()
+        {
+            Console.WriteLine("Printing all Instruments!");
+            foreach (MusicalInstrument instrument in musicShop.ListInstruments)
+            {
+                PrintInstrument(instrument);
+                Console.WriteLine();
+            }
         }
 
         public static string GetStringInput(string prompt)

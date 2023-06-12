@@ -1,4 +1,10 @@
-﻿namespace MusicShop
+﻿/*
+ * Assignment: 1
+ * Name: Kyle Galway
+ * ID: 991418738
+ * This is the model class for creating Harp objects.
+*/
+namespace MusicShop
 {
     internal class Harp: StringInstrument
     {

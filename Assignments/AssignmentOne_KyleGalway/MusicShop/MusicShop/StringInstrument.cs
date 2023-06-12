@@ -1,4 +1,11 @@
-﻿namespace MusicShop
+﻿/*
+ * Assignment: 1
+ * Name: Kyle Galway
+ * ID: 991418738
+ * This is the abstract class for dictating the attributes of all 
+ * String Instruments, those being Guitar and Harp.
+*/
+namespace MusicShop
 {
     internal abstract class StringInstrument: MusicalInstrument, IFixable, IPlayable
     {

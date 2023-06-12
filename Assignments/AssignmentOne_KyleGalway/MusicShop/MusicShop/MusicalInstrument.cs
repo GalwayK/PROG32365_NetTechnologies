@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/*
+ * Assignment: 1
+ * Name: Kyle Galway
+ * ID: 991418738
+ * This is the class for dictating the abstract Instrument 
+ * base class which all descendant Instruments must extend. 
+*/
 namespace MusicShop
 {
     internal abstract class MusicalInstrument: IComparable<MusicalInstrument>
