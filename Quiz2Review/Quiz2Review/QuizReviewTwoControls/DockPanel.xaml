@@ -1,0 +1,29 @@
+﻿<Window x:Class="QuizReviewTwoControls.DockPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizReviewTwoControls"
+        mc:Ignorable="d"
+        Title="DockPanel" Height="450" Width="800">
+    <DockPanel LastChildFill="True">
+        <Border DockPanel.Dock="Top" Background="LightGreen">
+            <Label Content="1. Top" />
+        </Border>
+        <Border DockPanel.Dock="Left" Background="Purple">
+            <Label Content="2. Left" />
+        </Border>
+        <Border DockPanel.Dock="Right" Background="Orange">
+            <Label Content="3. Right" />
+        </Border>
+        <Border DockPanel.Dock="Bottom" Background="Yellow">
+            <Label Content="4. Bottom" />
+        </Border>
+        <Border DockPanel.Dock="Bottom" Background="Cyan">
+            <Label Content="5. Botom" />
+        </Border>
+        <Border Background="White">
+            <Label Content="6. None" />
+        </Border>
+    </DockPanel>
+</Window>

@@ -1,0 +1,15 @@
+﻿<Window x:Class="Quiz2ReviewControlExercises.exitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quiz2ReviewControlExercises"
+        mc:Ignorable="d"
+        Title="exitWindow" Height="125" Width="370">
+    <Grid>
+        <Button x:Name="btnStay" Content="Stay" Margin="75,0,217,0" VerticalAlignment="Center" Height="38" Click="stayInApplication"/>
+        <Button x:Name="btnExit" Content="Exit" Margin="217,0,75,0" VerticalAlignment="Center" Height="38" Click="exitApplication"/>
+        <ComboBox HorizontalAlignment="Left" Height="0" Margin="114,213,0,0" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,47 @@
+﻿<Window x:Class="QuizTwoStylesReview.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizTwoStylesReview"
+        mc:Ignorable="d"
+        Title="Exercise Styles" Height="300" Width="500">
+    <!--<Window.Resources>
+        <Style x:Key="LightGreyBackground" TargetType="Grid">
+            <Setter Property="Background" Value="#EFEFEF"></Setter>
+        </Style>
+        <Style x:Key="WhiteBackground" TargetType="Border">
+            <Setter Property="Background" Value="White"></Setter>
+        </Style>
+    </Window.Resources>-->
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem HorizontalAlignment="Left" VerticalAlignment="Stretch" Header="_Options" Click="ResetAll">
+                <MenuItem Header="_Reset" Name="MenuReset" InputGestureText="Ctrl+R"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Last Action Taken: " VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                <Label Name ="lblLastAction" Content="No Actions Taken"></Label>
+            </StackPanel>
+        </StatusBar>
+        <Canvas Style="{DynamicResource GreyBackground}" Width="500">
+
+            <Border BorderBrush="Black" BorderThickness="1" Style="{StaticResource WhiteBackground}" Height="214" Canvas.Left="26" Canvas.Top="10" Width="448" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Label Content="Exercise 1: Styling Rectangles" HorizontalContentAlignment="Center" Height="26" VerticalAlignment="Top" Canvas.Left="168" Canvas.Top="27"/>
+
+            <StackPanel Name="StackRadio" Margin="75,51,280,29" Style="{DynamicResource radioStyle}">
+                <RadioButton x:Name="radioBlue" Content="Blue" Height="45" Style="{DynamicResource RadioStyle}" Width="115" Click="RadioClicked"/>
+                <RadioButton x:Name="radioRed" Content="Red" Height="44" Style="{DynamicResource RadioStyle}" Width="114" Click="RadioClicked"/>
+                <RadioButton x:Name="radioGreen" Content="Green" Height="53" Style="{DynamicResource RadioStyle}" Width="115" Click="RadioClicked"/>
+            </StackPanel>
+
+            <StackPanel Name="StackLabel" Style="{DynamicResource radioStyle}" Canvas.Left="329" Canvas.Top="53" HorizontalAlignment="Left" VerticalAlignment="Center" Width="90">
+                <Label x:Name="lblBlue" Content="Blue" Height="46" Style="{DynamicResource ResourceKey=TextStyle}" MouseEnter="mouseEnterEvent"/>
+                <Label x:Name="lblRed" Content="Red" Height="44" Style="{DynamicResource ResourceKey=TextStyle}" MouseEnter="mouseEnterEvent"/>
+                <Label x:Name="lblGreen" Content="Green" Height="44" Style="{DynamicResource TextStyle}" MouseEnter="mouseEnterEvent"/>
+            </StackPanel>
+        </Canvas>
+    </DockPanel>
+</Window>
