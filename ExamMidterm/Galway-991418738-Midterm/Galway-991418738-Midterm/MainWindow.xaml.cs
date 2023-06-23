@@ -25,6 +25,7 @@ namespace Galway_991418738_Midterm
         public MainWindow()
         {
             InitializeComponent();
+            this.ResizeMode = ResizeMode.NoResize;
         }
 
         private void QuitApplication(object sender, RoutedEventArgs e)
@@ -35,6 +36,7 @@ namespace Galway_991418738_Midterm
         private void StartApplication(object sender, RoutedEventArgs e)
         {
             BookManagement bookManagement = new BookManagement();
+            bookManagement.ResizeMode = ResizeMode.NoResize;
             this.Hide();
             bookManagement.ShowDialog();
             if (bookManagement.continueApplication)

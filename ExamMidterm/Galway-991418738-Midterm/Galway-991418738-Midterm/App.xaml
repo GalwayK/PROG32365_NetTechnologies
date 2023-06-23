@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Galway_991418738_Midterm"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="Resources/TextStyles.xaml"></ResourceDictionary>
     </Application.Resources>
 </Application>

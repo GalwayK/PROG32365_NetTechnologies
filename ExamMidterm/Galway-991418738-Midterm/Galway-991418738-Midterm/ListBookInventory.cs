@@ -6,6 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * Midterm Assignment
+ * Name: Kyle Galway
+ * ID: 991418738
+ * This is the main controller class for accessing Book data
+*/
+
 namespace Galway_991418738_Midterm
 {
     internal class ListBookInventory: List<Book>, INotifyCollectionChanged

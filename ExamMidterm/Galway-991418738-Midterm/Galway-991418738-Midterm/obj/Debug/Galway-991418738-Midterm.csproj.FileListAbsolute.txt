@@ -17,3 +17,4 @@ C:\Semester4SDNE\PROG32365_NetTechnologies\ExamMidterm\Galway-991418738-Midterm\
 C:\Semester4SDNE\PROG32365_NetTechnologies\ExamMidterm\Galway-991418738-Midterm\Galway-991418738-Midterm\obj\Debug\Resources\TextStyles.baml
 C:\Semester4SDNE\PROG32365_NetTechnologies\ExamMidterm\Galway-991418738-Midterm\Galway-991418738-Midterm\obj\Debug\BookManagement.g.cs
 C:\Semester4SDNE\PROG32365_NetTechnologies\ExamMidterm\Galway-991418738-Midterm\Galway-991418738-Midterm\obj\Debug\BookManagement.baml
+C:\Semester4SDNE\PROG32365_NetTechnologies\ExamMidterm\Galway-991418738-Midterm\Galway-991418738-Midterm\obj\Debug\App.baml

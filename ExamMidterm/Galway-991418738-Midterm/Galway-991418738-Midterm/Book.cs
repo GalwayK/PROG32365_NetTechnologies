@@ -16,6 +16,11 @@ using System.Windows.Media.Animation;
 
 namespace Galway_991418738_Midterm
 {
+    /*
+     * IComparable: Needed to compare books 
+     * INotifyPropertyChanged: Needed to update the WPF GUI when a property changes
+    */
+
     internal class Book: IComparable<Book>, INotifyPropertyChanged
     {
         private string _author;
@@ -24,8 +29,10 @@ namespace Galway_991418738_Midterm
         private decimal _price;
         private int _isbn;
 
+        // PropertyChangedEventHandler for notifying WPF GUI when a property changes
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // Constructor
         public Book(string title, string author, string genre, int isbn, decimal price)
         {
             ISBN = isbn;
@@ -35,29 +42,34 @@ namespace Galway_991418738_Midterm
             Genre = genre;
         }
 
+        // Standard setter and getter for _title
         public string Title
         {
             get;
             set;
         }
 
+        // Standard setter and getter for _author
         public string Author
         {
             get;
             set;
         }
 
+        // Standard setter and getter for _genre
         public string Genre
         {
             get;
             set;    
         }
 
+        // Standard setter and custom getter to disallow negative ISBN
         public int ISBN
         {
             get => _isbn;
             set
             {
+                // If ISBN negative, throw Exception
                 if (value >= 0) 
                 { 
                     _isbn  = value;
@@ -69,6 +81,7 @@ namespace Galway_991418738_Midterm
             }
         }
 
+        // Standard Getter and Custom Setter to send notify propery changed exception
         public decimal Price
         {
             get => _price; 
@@ -86,16 +99,21 @@ namespace Galway_991418738_Midterm
             }
         }
 
+        // Bool operators for coparing Books using book prices
+
+        // Greater than operator implementation
         public static bool operator > (Book bookOne, Book bookTwo)
         {
             return bookOne.Price > bookTwo.Price;
         }
 
+        // Less than operator implementation
         public static bool operator < (Book bookOne, Book bookTwo)
         {
             return bookOne.Price < bookTwo.Price;
         }
 
+        // Custom Equals method implementation for compare Book prices
         public override bool Equals(object obj)
         {
             if (obj is Book)
@@ -106,16 +124,20 @@ namespace Galway_991418738_Midterm
             return false;
         }
 
+        // Custom Greater than or Equal to operator 
         public static bool operator >= (Book bookOne, Book bookTwo)
         {
             return bookOne.Price >= bookTwo.Price;
         }
 
+        // Custom Less than or Equal to operator
         public static bool operator <= (Book bookOne, Book bookTwo)
         {
             return bookOne.Price <= bookTwo.Price;
         }
 
+
+        // CompareTo Method for IComparable implementation by comparing Book prices
         public int CompareTo(Book book)
         {
             return this > book 
@@ -125,16 +147,20 @@ namespace Galway_991418738_Midterm
                     : 0;
         }
 
+        // Custom method for checking if two Book objects reference the same Object
         public bool IsSameBook(Book that)
         {
             return this.Author.Equals(that.Author) && this.Author.Equals(that.Author);
         }
 
+        // Custom ToString implementation
         public override string ToString()
         {
             return $"Title: {Title} Author: {Author} Genre: {Genre} ISBN: {ISBN}";
         }
 
+
+        // Use base object GetHashCode implementation
         public override int GetHashCode()
         {
             return base.GetHashCode();
