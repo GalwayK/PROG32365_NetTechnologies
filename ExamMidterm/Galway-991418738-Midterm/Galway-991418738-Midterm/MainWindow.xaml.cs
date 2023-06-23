@@ -13,6 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+/*
+ * Midterm Assignment
+ * Name: Kyle Galway
+ * ID: 991418738
+ * This is first window for displaying my student name, ID, and the basic application information.
+*/
+
 namespace Galway_991418738_Midterm
 {
     /// <summary>
@@ -20,31 +27,38 @@ namespace Galway_991418738_Midterm
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Use singleton bookStore to access application controller
         static BookStore bookStore = BookStore.BookStoreFactory();
 
+        // Initialize window and disallow window resizing
         public MainWindow()
         {
             InitializeComponent();
             this.ResizeMode = ResizeMode.NoResize;
         }
 
+        // Close application when window closed or Quit Button clicked
         private void QuitApplication(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        // Start application if Start Button clicked
         private void StartApplication(object sender, RoutedEventArgs e)
         {
             BookManagement bookManagement = new BookManagement();
             bookManagement.ResizeMode = ResizeMode.NoResize;
             this.Hide();
+            // Show Book Management Window and pause current window 
             bookManagement.ShowDialog();
             if (bookManagement.continueApplication)
             {
+                // If return button clicked, return to start window
                 this.Show();
             }
             else
             {
+                // If quit button clicked, close application
                 this.Close();
             }
         }

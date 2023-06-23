@@ -13,6 +13,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+/*
+ * Midterm Assignment
+ * Name: Kyle Galway
+ * ID: 991418738
+ * This is the main view class for outputting BookStore data and recieving user input from the WPF GUI
+*/
+
 namespace Galway_991418738_Midterm
 {
     /// <summary>
@@ -20,8 +27,10 @@ namespace Galway_991418738_Midterm
     /// </summary>
     public partial class BookManagement : Window
     {
+        // Initial field for determining start window behaviour when window closed
         public bool continueApplication = false;
 
+        // Create bookStore variable to access singleton controller
         private static BookStore bookStore = BookStore.BookStoreFactory();
         public BookManagement()
         {
@@ -36,7 +45,7 @@ namespace Galway_991418738_Midterm
             gridSearchedData.ItemsSource = null;
         }
 
-
+        // Method for handling search by genre events when search button clicked
         private void SearchByGenre(object sender, RoutedEventArgs e)
         {
             string strGenre = txtSearchInputGenre.Text;
@@ -53,6 +62,7 @@ namespace Galway_991418738_Midterm
             ClearSearchText();
         }
 
+        // Method for handling search by author events when a search event is submitted
         private void SearchByAuthor()
         {
             string strAuthor = txtSearchInputAuthor.Text.ToLower();
@@ -73,11 +83,13 @@ namespace Galway_991418738_Midterm
             ClearSearchText();
         }
 
+        // Event method for routing mouse click search by author button events
         private void SearchByAuthor(object sender, RoutedEventArgs e)
         {
             SearchByAuthor();
         }
 
+        // Event method for routing key down search by author button events
         private void SearchByAuthor(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter) 
@@ -85,7 +97,8 @@ namespace Galway_991418738_Midterm
                 SearchByAuthor();
             }
         }
-
+        
+        // Event method for handling book insertion events
         private void InsertNewBook(object sender, RoutedEventArgs e)
         {
             string strTitle = "";
@@ -140,11 +153,13 @@ namespace Galway_991418738_Midterm
             ClearInsertText();
         }
 
+        // Routing method for handling edit form reveal events on button click
         private void RevealEditInformationMouseEvent(object sender, RoutedEventArgs e)
         {
             RevealEditInformation();
         }
 
+        // Routing method for handling edit form reveal events on keydown events
         private void RevealEditInformationKeyEvent(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter) 
@@ -153,6 +168,7 @@ namespace Galway_991418738_Midterm
             }
         }
 
+        // Retrieve book information to reveal edit form when ISBN enter into Edit tab 
         private void RevealEditInformation()
         {
             EditInnerGrid.Opacity = 0;
@@ -196,6 +212,7 @@ namespace Galway_991418738_Midterm
             lblStatus.Content = status;
         }
 
+        // Event handling method for handling update book events
         private void UpdateBook(object sender, RoutedEventArgs e)
         {
             string status = "Invalid input";
@@ -233,6 +250,7 @@ namespace Galway_991418738_Midterm
             ClearEditText();
         }
 
+        // Event handling method for handling delete book events
         private void DeleteBook(object sender, RoutedEventArgs e)
         {
             string status = "ISBN Invalid";
@@ -253,67 +271,77 @@ namespace Galway_991418738_Midterm
             ClearDeleteText();
         }
 
+        // Utility method for checking validlity of inputted ISBN
         private bool IsTextValidISBN(TextBox txtIsbn)
         {
             int? isbn = Convert.ToInt32(txtIsbn.Text);
             return isbn != null && isbn > 0;
         }
 
+        // Utility method for checking validity of inputted price
         private bool IsTextValidPrice(TextBox txtPrice)
         {
             decimal? monPrice = Convert.ToDecimal(txtPrice.Text);
             return monPrice != null && monPrice > BookStore.BOOK_MIN_PRICE && monPrice < BookStore.BOOK_MAX_PRICE;
         }
 
+        // Method for clearing all leftover text on tab change
         private void FocusShowTab(object sender, RoutedEventArgs e)
         {
             TabShow.Focus();
             ClearAllText();
         }
 
+        // Method for clearing all leftover text on tab change
         private void FocusSearchTab(object sender, RoutedEventArgs e)
         {
             TabSearch.Focus();
             ClearAllText();
         }
 
+        // Method for clearing all leftover text on tab change
         private void FocusInsertTab(object sender, RoutedEventArgs e)
         {
             TabInsert.Focus();
             ClearAllText();
         }
 
+        // Method for clearing all leftover text on tab change
         private void FocusEditTab(object sender, RoutedEventArgs e)
         {
             TabEdit.Focus();
             ClearAllText();
         }
 
+        // Method for clearing all leftover text on tab change
         private void FocusDeleteTab(object sender, RoutedEventArgs e)
         {
             TabDelete.Focus();
             ClearAllText();
         }
 
+        // Method for returning to start page
         private void Return(object sender, RoutedEventArgs e)
         {
             continueApplication = true;
             this.Close();
         }
 
+        // Method for closing application
         private void QuitApplication(object sender, RoutedEventArgs e)
         {
             continueApplication = false;
             this.Close();
         }
 
+        // Method for clearing all text in search tab
         void ClearSearchText()
         {
             txtSearchInputAuthor.Text = string.Empty;
             txtSearchInputGenre.Text = string.Empty;
         }
 
-
+        // Method for clearing all text in edit tab
         void ClearEditText()
         {
             txtDeleteISBN.Text = string.Empty;
@@ -323,11 +351,13 @@ namespace Galway_991418738_Midterm
             txtEditISBN.Text = string.Empty;
         }
 
+        // Method for clearing all text in delete tab
         void ClearDeleteText()
         {
             txtDeleteISBN.Text = string.Empty;
         }
 
+        // Method for clearing all text in insert tab
         void ClearInsertText()
         {
             txtInsertAuthor.Text = string.Empty;
@@ -337,6 +367,7 @@ namespace Galway_991418738_Midterm
             txtInsertGenre.Text = string.Empty;
         }
 
+        // Method for clearing all text in application
         void ClearAllText()
         {
             ClearEditText();
@@ -345,6 +376,7 @@ namespace Galway_991418738_Midterm
             ClearSearchText();
         }
 
+        // Method for handling tab change events in menu
         private void TabChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.Source is TabControl) 

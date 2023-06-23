@@ -10,7 +10,7 @@ using System.Threading.Tasks;
  * Midterm Assignment
  * Name: Kyle Galway
  * ID: 991418738
- * This is the main controller class for accessing Book data
+ * This is a custom descendant of the List class for implementing the INotifyCollectionChanged interface and to allow for a Contains method for checking if the collection contains a book with a given ISBN.
 */
 
 namespace Galway_991418738_Midterm
@@ -39,6 +39,8 @@ namespace Galway_991418738_Midterm
             return containsIsbn;
         }
 
+        // Use base List behaviour for adding Book, but also send NotifyCollection
+        // changed event to update the WPF GUI lists
         public new void Add(Book book) 
         { 
             base.Add(book);
@@ -46,6 +48,8 @@ namespace Galway_991418738_Midterm
                 NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, book));
         }
 
+        // Use base List behaviour for removing Book, but also send NotifyCollection
+        // changed event to update the WPF GUI lists
         public new void Remove(Book book) 
         { 
             base.Remove(book);
