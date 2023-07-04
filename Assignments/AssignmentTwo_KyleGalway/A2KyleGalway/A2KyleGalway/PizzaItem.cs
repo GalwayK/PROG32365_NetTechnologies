@@ -50,9 +50,10 @@ namespace A2KyleGalway
         public static List<PizzaSize> listAvailablePizzaSizes = CreateListAvailablePizzaSizes();
         public static List<PizzaType> listAvailablePizzaTypes = CreateListAvailablePizzaTypes();
 
-        static string[] arrStrToppings = {};
+        static string[] arrStrVegetableToppings = { /* Insert strings for all pizza veg toppings*/};
+        static string[] arrStrMeatToppings = { /* Insert strings for all pizza meat toppings*/};
         static string[] arrStrPizzaSizes = { "Small", "Medium", "Large", "Extra-large" };
-        static string[] arrStrPizzaTypes = { };
+        static string[] arrStrPizzaTypes = { /*Insert strings for all pizza types */};
 
         private static List<Topping> CreateListAvailableToppings()
         {
@@ -150,11 +151,11 @@ namespace A2KyleGalway
              * between pizza types. Despite this, in the assignment description there is no difference in price between
              * pizza types. As a result, this field goes unused and is not required in the current version of the app.
              * 
-             * Having worked as the head cook in a pizzeria which specialized for deep dish pizzasand there is usually 
+             * Having worked as the head cook in a pizzeria which specialized for deep dish pizzas, there is usually 
              * a difference in price between thin crust and deep dish pies. In the event that the business 
-             * owner who has contracted my services to create this app eventually decides to implement price 
+             * owner who has contracted my services to create this app eventually decides to add a price 
              * difference, this field could be used to implement it without reworking the application majorly. 
-             * */
+            */
 
             public string strType;
             public decimal numTypePrice;
@@ -175,7 +176,11 @@ namespace A2KyleGalway
 }
 
 /*
- * To do: Create enums for sizes, types, and toppings. 
+ * To do: 
+ * 1. Create enums for sizes, types, and toppings. Change lists to dicts.
+ * 2. Create Order class for tracking contained order items.
+ * 3. Create Controller class for accessing stored Orders. 
+ * 4. Create View for handling customer transactions for implementing the WPF GUI.
  * 
  * 
 */ 
