@@ -10,15 +10,29 @@ namespace A2KyleGalway
     {
         public override string ToString()
         {
-            string strToppings = "";
+            string strToppings = "no toppings";
 
-            for (int i = 0; i < this.Count - 2; i++)
+            if (this.Count > 0) 
             {
-                strToppings += $"{this[i].strName}, ";
-            }
-            strToppings += $"{this.Last<Topping>().strName}";
+                strToppings = "";
+                for (int i = 0; i < this.Count - 1; i++)
+                {
+                    strToppings += $"{this[i].strName}, ";
+                }
+                strToppings += $"{this.Last<Topping>().strName}";
 
-            return strToppings;;
+            }
+            return strToppings;
+        }
+
+        public new void Add(Topping topping)
+        {
+            base.Add(topping);
+        }
+
+        public new void Remove(Topping topping)
+        {
+            base.Remove(topping);
         }
     }
 }

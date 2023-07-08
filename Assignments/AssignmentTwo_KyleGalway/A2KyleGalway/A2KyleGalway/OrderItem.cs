@@ -8,15 +8,10 @@ namespace A2KyleGalway
 {
     internal abstract class OrderItem
     {
-        private string _strName;
-
+        // All children must be able to calculate their price.
         public abstract decimal CalculatePrice();
 
-        public string StrName
-        {
-            get { return _strName; }
-            set { _strName = value; }
-        }
-
+        // All children must override ToString.
+        public abstract override string ToString();
     }
 }

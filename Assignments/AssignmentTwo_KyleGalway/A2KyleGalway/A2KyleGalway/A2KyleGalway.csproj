@@ -58,8 +58,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Customer.cs" />
+    <Compile Include="CustomerList.cs" />
     <Compile Include="ListPizzaToppings.cs" />
     <Compile Include="MeatTopping.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderList.cs" />
+    <Compile Include="PizzaShop.cs" />
     <Compile Include="Topping.cs" />
     <Compile Include="VegetableTopping.cs" />
     <Page Include="MainWindow.xaml">

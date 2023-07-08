@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,15 +13,50 @@ namespace A2KyleGalway
 {
     internal class PizzaItem : OrderItem
     {
-        private ListPizzaToppings listToppings;
+        public ListPizzaToppings listToppings;
         private PizzaSize pizzaSize;
         private PizzaType pizzaType;
 
-        public PizzaItem(ListPizzaToppings listToppings, PizzaSize pizzaSize, PizzaType pizzaType)
+        public PizzaItem()
         {
+            this.listToppings = new ListPizzaToppings();
+            this.pizzaSize = PizzaItem.listAvailablePizzaSizes[0];
+            this.pizzaType = PizzaItem.listAvailablePizzaTypes[0];
+        }
+
+        public PizzaItem(PizzaSize pizzaSize, PizzaType pizzaType, ListPizzaToppings listToppings = null)
+        {
+            if (listToppings == null)
+            {
+                listToppings = new ListPizzaToppings();
+            }
             this.listToppings = listToppings;
             this.pizzaSize = pizzaSize;
             this.pizzaType = pizzaType;
+        }
+
+        public PizzaItem AddTopping(Topping topping)
+        {
+            this.listToppings.Add(topping);
+            return this;
+        }
+
+        public PizzaItem RemoveTopping(Topping topping)
+        {
+            this.listToppings.Remove(topping);
+            return this;
+        }
+
+        public PizzaItem ChangeSize(PizzaSize size)
+        {
+            this.pizzaSize = size;
+            return this;
+        }
+
+        public PizzaItem ChangeType(PizzaType type)
+        {
+            this.pizzaType = type;
+            return this;
         }
 
         public override string ToString()
@@ -46,14 +82,20 @@ namespace A2KyleGalway
             return totalPrice;
         }
 
-        public static List<Topping> listAvailableToppings = CreateListAvailableToppings();
-        public static List<PizzaSize> listAvailablePizzaSizes = CreateListAvailablePizzaSizes();
-        public static List<PizzaType> listAvailablePizzaTypes = CreateListAvailablePizzaTypes();
+        static List<string> listStrVegetableToppings = new List<string>() { "Pineapple", "Extra Cheese",
+                    "Dried Shrimp (why)", "Mushrooms", "Sun Dried Tomatoes", "Daikon", "Spinach",
+                    "Roasted Garlic", "Jalapeno" };
 
-        static string[] arrStrVegetableToppings = { /* Insert strings for all pizza veg toppings*/};
-        static string[] arrStrMeatToppings = { /* Insert strings for all pizza meat toppings*/};
-        static string[] arrStrPizzaSizes = { "Small", "Medium", "Large", "Extra-large" };
-        static string[] arrStrPizzaTypes = { /*Insert strings for all pizza types */};
+        static List<string> listStrMeatToppings = new List<string>() {"Ground Beef", "Shredded Chicken",
+                    "Grilled Chicken", "Pepperoni", "Ham", "Bacon", "Steak", "Anchovies"};
+
+        static List<string> listStrPizzaSizes = new List<string>() { "Small", "Medium", "Large", "Extra-large" };
+
+        static List<string> listStrPizzaTypes = new List<string>() { "Thin Crust", "Normal Crust", "Deep Dish" };
+
+        public static List<Topping> listAvailableToppings = CreateListAvailableToppings();
+        public static List<PizzaType> listAvailablePizzaTypes = CreateListAvailablePizzaTypes();
+        public static List<PizzaSize> listAvailablePizzaSizes = CreateListAvailablePizzaSizes();
 
         private static List<Topping> CreateListAvailableToppings()
         {
@@ -74,29 +116,22 @@ namespace A2KyleGalway
 
             void addVegetableToppings()
             {
-                List<string> listVegetableToppings = new List<string>(){ "Pineapple", "Extra Cheese", 
-                    "Dried Shrimp (why)", "Mushrooms", "Anchovies", "Sun Dried Tomatoes", "Daikon", "Spinach", 
-                    "Roasted Garlic", "Jalapeno"};
-
                 Action<string> addVegToppingToList = (strTopping) =>
                 {
                     addToppingToList(strTopping, false);
                 };
 
-                listVegetableToppings.ForEach(addVegToppingToList);
+                PizzaItem.listStrVegetableToppings.ForEach(addVegToppingToList);
             }
 
             void addMeatToppings()
-            {
-                List<string> listMeatToppings = new List<string>() {"Ground Beef", "Shredded Chicken", 
-                    "Grilled Chicken", "Pepperoni", "Ham", "Bacon", "Steak"};
-
+            { 
                 Action<string> addMeatToppingToList = (strTopping) =>
                 {
                     addToppingToList(strTopping, true);
                 };
 
-                listMeatToppings.ForEach(addMeatToppingToList);
+                listStrMeatToppings.ForEach(addMeatToppingToList);
             }
 
             addVegetableToppings();
@@ -109,10 +144,10 @@ namespace A2KyleGalway
         {
             List<PizzaSize> listAvailablePizzaSizes = new List<PizzaSize>();
 
-            listAvailablePizzaSizes.Add(new PizzaSize(arrStrPizzaSizes[0], 7.00M));
-            listAvailablePizzaSizes.Add(new PizzaSize(arrStrPizzaSizes[1], 10.00M));
-            listAvailablePizzaSizes.Add(new PizzaSize(arrStrPizzaSizes[2], 13.00M));
-            listAvailablePizzaSizes.Add(new PizzaSize(arrStrPizzaSizes[3], 15.00M));
+            listAvailablePizzaSizes.Add(new PizzaSize(listStrPizzaSizes[0], 7.00M));
+            listAvailablePizzaSizes.Add(new PizzaSize(listStrPizzaSizes[1], 10.00M));
+            listAvailablePizzaSizes.Add(new PizzaSize(listStrPizzaSizes[2], 13.00M));
+            listAvailablePizzaSizes.Add(new PizzaSize(listStrPizzaSizes[3], 15.00M));
 
             return listAvailablePizzaSizes;
         }
@@ -121,9 +156,10 @@ namespace A2KyleGalway
         {
             List<PizzaType> listAvailablePizzaTypes = new List<PizzaType>();
 
-            listAvailablePizzaTypes.Add(new PizzaType("Thin Crust", 0.0M));
-            listAvailablePizzaTypes.Add(new PizzaType("Normal Crust", 0.0M));
-            listAvailablePizzaTypes.Add(new PizzaType("Deep Dish", 0.0M));
+            foreach(string strPizzaType in PizzaItem.listStrPizzaTypes)
+            {
+                listAvailablePizzaTypes.Add(new PizzaType(strPizzaType, 0.0M));
+            }
 
             return listAvailablePizzaTypes;
         }
@@ -147,14 +183,13 @@ namespace A2KyleGalway
         public struct PizzaType
         {
             /* 
-             * In this implementation I have included a numTypePrice field, to account for any difference of price 
-             * between pizza types. Despite this, in the assignment description there is no difference in price between
-             * pizza types. As a result, this field goes unused and is not required in the current version of the app.
-             * 
-             * Having worked as the head cook in a pizzeria which specialized for deep dish pizzas, there is usually 
-             * a difference in price between thin crust and deep dish pies. In the event that the business 
-             * owner who has contracted my services to create this app eventually decides to add a price 
-             * difference, this field could be used to implement it without reworking the application majorly. 
+            * In this implementation I have included a numTypePrice field, to account for any difference of price 
+            * between pizza types. Despite this, in the assignment description there is no difference in price between
+            * pizza types. As a result, this field goes unused and is not required in the current version of the app.
+            * 
+            * In the event that the business owner who has contracted my services to create this app eventually 
+            * decides to add a price difference, this field could be used to implement it without reworking the
+            * application majorly. 
             */
 
             public string strType;
@@ -174,13 +209,3 @@ namespace A2KyleGalway
 
     }
 }
-
-/*
- * To do: 
- * 1. Create enums for sizes, types, and toppings. Change lists to dicts.
- * 2. Create Order class for tracking contained order items.
- * 3. Create Controller class for accessing stored Orders. 
- * 4. Create View for handling customer transactions for implementing the WPF GUI.
- * 
- * 
-*/ 
