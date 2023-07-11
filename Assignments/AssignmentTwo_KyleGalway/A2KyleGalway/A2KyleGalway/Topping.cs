@@ -18,5 +18,10 @@ namespace A2KyleGalway
             this.strName = strName;
             this.id = id;
         }
+
+        public override string ToString()
+        {
+            return $"#{this.id}: {this.strName}";
+        }
     }
 }

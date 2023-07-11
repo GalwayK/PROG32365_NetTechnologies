@@ -5,8 +5,107 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:A2KyleGalway"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" Loaded="initializeLists">
+    <DockPanel LastChildFill="True">
+        <StatusBar DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Status: "> </Label>
+                <Label x:Name="lblStatus" Content="Application Launched"></Label>
+            </StackPanel>
+        </StatusBar>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Options" Name="mnuOptions" >
+                <MenuItem Header="Place an Order" Name="menuPlaceOrder" InputGestureText="Ctrl+1" ></MenuItem>
+                <MenuItem Header="Confirm an Order" Name="menuConfirmOrder" InputGestureText="Ctrl+3" ></MenuItem>
+                <Separator />
+                <MenuItem Header="Enter Customer Information" Name="menuCustomerInformation" InputGestureText="Ctrl+2" />
+                <MenuItem Header="Enter Payment" Name="menuPaymentInformation" InputGestureText="Ctrl+4" ></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl DockPanel.Dock="Top">
+            <TabItem Name="TabOrder" Header="Place an Order">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Order a Pizza" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                    <Label Grid.Row="0" Grid.Column="1" Content="Order a Side Item" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"> </Label>
+                    <Label Grid.Row="0" Grid.Column="2" Content="Order a Drink" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+
+                    <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="False" Margin="40 0">
+                        <Button DockPanel.Dock="Left" Name="btnAddPizza" Width="100" Height="40" Content="Add Pizza"></Button>
+                        <Button DockPanel.Dock="Right" Name="btnConfirmOrder" Width="100" Height="40" Content="Finish Order"></Button>
+                    </DockPanel>
+                    <Button Name="btnAddSide" Grid.Row="2" Grid.Column="1" Width="100" Height="40" Content="Add Side"></Button>
+                    <Button Name="btnAddDrink" Grid.Row="2" Grid.Column="2" Width="100" Height="40" Content="Add Drink"></Button>
+                    
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Name="listSize" VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2"></ComboBox>
+                        <ComboBox Name="listType" VerticalAlignment="Center" Margin="10" Grid.Column="2" Grid.ColumnSpan="2"></ComboBox>
+
+                        <ComboBox Name="listAddTopping" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="10"></ComboBox>
+                        <ComboBox Name="listRemoveTopping" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="10"></ComboBox>
+
+                        <Button Content="Add Topping" Name="btnAddTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="1"> </Button>
+                        <Button Content="Remove Topping" Name="btnRemoveTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="2"></Button>
+
+
+                        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="4" Name="lblPizzaTemplate" />
+                    </Grid>
+                    
+                    <ListBox Name="listSideItems" Grid.Row="1" Grid.Column="1" Margin="5 20" />
+                    <ListBox Name="listDrinkItems" Grid.Row="1" Grid.Column="2" Margin="5 20" />
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabConfirm" Header="Confirm an Order">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabCustomerInformation" Header="Enter Customer Information">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+
+                        </Grid.RowDefinitions>
+                    </Grid>
+                </TabItem>
+            <TabItem Name="TabPaymentInformation" Header="Enter Payment Information">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>

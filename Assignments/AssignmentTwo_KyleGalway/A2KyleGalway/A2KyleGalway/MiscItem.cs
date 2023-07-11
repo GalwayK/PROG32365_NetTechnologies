@@ -78,9 +78,9 @@ namespace A2KyleGalway
                 listOthers.Add(new MiscItem(listOthers.Count + 1, strName, numPrice));
             }
 
-            AddItemToList("Chicken Wings (quantity 5)", 6.99M);
-            AddItemToList("Chicken Wings (quantity 10)", 11.99M);
-            AddItemToList("Chicken Wings (quantity 20)", 22.99M);
+            AddItemToList("Chicken Wings (5)", 6.99M);
+            AddItemToList("Chicken Wings (10)", 11.99M);
+            AddItemToList("Chicken Wings (20)", 22.99M);
             AddItemToList("Poutine", 5.29M);
             AddItemToList("Onion Rings (small)", 3.99M);
             AddItemToList("Onion Rings (medium)", 5.99M);

@@ -22,6 +22,7 @@ namespace A2KyleGalway
     public partial class MainWindow : Window
     {
         private PizzaShop pizzaShop = PizzaShop.SingletonPizzaShopFactory();
+        private PizzaItem pizzaItemTemplate = new PizzaItem();
 
         public MainWindow()
         {
@@ -147,6 +148,18 @@ namespace A2KyleGalway
                 Console.WriteLine($"Item #{item.ItemId}: {item.StrName} {item.NumPrice:C}");
             }
             Console.WriteLine();
+        }
+
+        private void initializeLists(object sender, RoutedEventArgs e)
+        {
+            listSideItems.ItemsSource = MiscItem.listOtherItems;
+            listDrinkItems.ItemsSource = MiscItem.listDrinkItems;
+            listSize.ItemsSource = PizzaItem.listAvailablePizzaSizes;
+            listType.ItemsSource = PizzaItem.listAvailablePizzaTypes;
+            lblPizzaTemplate.DataContext = this.pizzaItemTemplate;
+            lblPizzaTemplate.Content = lblPizzaTemplate.DataContext.ToString();
+            listRemoveTopping.ItemsSource = PizzaItem.listAvailableToppings;
+            listAddTopping.ItemsSource = PizzaItem.listAvailableToppings;
         }
     }
 }

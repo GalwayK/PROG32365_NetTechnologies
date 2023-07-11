@@ -178,6 +178,11 @@ namespace A2KyleGalway
                 this.numSizePrice = numPrice;
                 this.id = ++numPizzaSizes;
             }
+
+            public override string ToString()
+            {
+                return $"#{this.id}: {this.strSize} {this.numSizePrice:C}";
+            }
         }
 
         public struct PizzaType
@@ -203,6 +208,11 @@ namespace A2KyleGalway
                 this.strType = strType;
                 this.numTypePrice = numTypePrice;
                 this.id = ++numPizzaTypes;
+            }
+
+            public override string ToString()
+            {
+                return $"#{this.id}: {this.strType}";
             }
         }
 

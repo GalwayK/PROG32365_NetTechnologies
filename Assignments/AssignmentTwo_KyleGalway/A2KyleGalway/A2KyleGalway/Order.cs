@@ -56,30 +56,30 @@ namespace A2KyleGalway
             CalculateFinalOrderPrice();
         }
 
-        private decimal CalculateTotalOrderPrice()
-        {
-            TotalPrice = 0.0M;
-            void CalculateTotalPrice(KeyValuePair<OrderItem, int> order)
-            {
-                OrderItem item = order.Key;
-                int quantity = order.Value;
-
-                TotalPrice += item.CalculatePrice() * quantity;
-            };
-
-            this.ForEach(CalculateTotalPrice);
-            
-            return TotalPrice;
-        }
-
-        private decimal CalculateTotalTaxPrice()
-        {
-            TaxPrice = TotalPrice * 0.13M;
-            return TaxPrice;
-        }
-
         private decimal CalculateFinalOrderPrice()
         {
+            decimal CalculateTotalOrderPrice()
+            {
+                TotalPrice = 0.0M;
+                void CalculateTotalPrice(KeyValuePair<OrderItem, int> order)
+                {
+                    OrderItem item = order.Key;
+                    int quantity = order.Value;
+
+                    TotalPrice += item.CalculatePrice() * quantity;
+                };
+
+                this.ForEach(CalculateTotalPrice);
+
+                return TotalPrice;
+            }
+
+            decimal CalculateTotalTaxPrice()
+            {
+                TaxPrice = TotalPrice * 0.13M;
+                return TaxPrice;
+            }
+
             CalculateTotalOrderPrice();
             CalculateTotalTaxPrice();
             return Price;
@@ -94,7 +94,7 @@ namespace A2KyleGalway
         {
             IN_PROGRESS = 0, 
             CONFIRMED = 1, 
-            CANCELLED = 2
+            CANCELLED = 2 
         }
 
         static string[] arrOrderStatuses = {"In-progress", "Confirmed", "Cancelled"};
