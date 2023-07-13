@@ -1,0 +1,15 @@
+﻿<Application
+    x:Class="Quiz3ReviewCalculator.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Quiz3ReviewCalculator">
+    <Application.Resources>
+        <ResourceDictionary>
+            <LinearGradientBrush x:Key="Rainbow">
+                <GradientStop Color="Red" Offset="0"></GradientStop>
+                <GradientStop Color="Green" Offset=".5"></GradientStop>
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+            </LinearGradientBrush>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

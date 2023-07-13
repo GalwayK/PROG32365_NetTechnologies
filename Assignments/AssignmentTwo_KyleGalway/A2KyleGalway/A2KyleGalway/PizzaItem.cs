@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Dynamic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -11,8 +12,9 @@ using System.Threading.Tasks;
 
 namespace A2KyleGalway
 {
-    internal class PizzaItem : OrderItem
+    internal class PizzaItem : OrderItem, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public ListPizzaToppings listToppings;
         private PizzaSize pizzaSize;
         private PizzaType pizzaType;
@@ -37,31 +39,50 @@ namespace A2KyleGalway
 
         public PizzaItem AddTopping(Topping topping)
         {
-            this.listToppings.Add(topping);
+            if (!this.listToppings.Contains(topping))
+            {
+                this.listToppings.Add(topping);
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ToString)));
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PizzaString)));
+
+            }
+            Console.WriteLine($"Updated: {this}");
             return this;
         }
 
         public PizzaItem RemoveTopping(Topping topping)
         {
-            this.listToppings.Remove(topping);
+            if (this.listToppings.Contains(topping))
+            {
+                this.listToppings.Remove(topping);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ToString)));
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PizzaString)));
+            }
             return this;
         }
 
         public PizzaItem ChangeSize(PizzaSize size)
         {
             this.pizzaSize = size;
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PizzaString)));
             return this;
         }
 
         public PizzaItem ChangeType(PizzaType type)
         {
             this.pizzaType = type;
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PizzaString)));
             return this;
+        }
+
+        public string PizzaString
+        {
+            get => this.ToString();
         }
 
         public override string ToString()
         {
-            return $"{pizzaSize.strSize} {pizzaType.strType} with {listToppings}: {CalculatePrice():C}.";
+            return $"{pizzaSize.strSize} {pizzaType.strType} with {listToppings}: {CalculatePrice():C}";
         }
 
         public override decimal CalculatePrice()

@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="Quiz3ReviewCalculator.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Quiz3ReviewCalculator"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}" Loaded="initializeWindow">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*"></ColumnDefinition>
+            <ColumnDefinition Width="16*"></ColumnDefinition>
+            <ColumnDefinition Width=".5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".5*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height=".5*" />
+        </Grid.RowDefinitions>
+        <StackPanel Background="{ThemeResource SystemControlAcrylicWindowBrush}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"> 
+            <TextBlock Name="lblCalculation" Text="Please enter a calculation!" VerticalAlignment="Center" TextAlignment="Center" FontSize="24epx"></TextBlock>
+        </StackPanel>
+        <RelativePanel Name="buttonPanel" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Name="btnZero" Height="110" Width="200" Background="Gray" RelativePanel.AlignBottomWithPanel="True"></Button>
+            <Button Name="btnOne" Height="110" Width="200" Background="Gray" RelativePanel.Above="btnZero" RelativePanel.AlignLeftWithPanel="True"></Button>
+            <Button Name="btnTwo" Height="110" Width="200" Background="Gray" RelativePanel.AlignTopWith="btnOne" RelativePanel.RightOf="btnOne"></Button>
+            <Button Name="btnThree" Height="110" Width="200" Background="Gray" RelativePanel.AlignTopWith="btnOne" RelativePanel.RightOf="btnTwo"></Button>
+            <Button Name="btnFour" Height="110" Width="200" Background="Gray" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="btnOne"></Button>
+            <Button Name="btnFive" Height="110" Width="200" Background="Gray" RelativePanel.AlignTopWith="btnFour" RelativePanel.RightOf="btnFour"></Button>
+            <Button Name="btnSix" Height="110" Width="200" Background="Gray" RelativePanel.AlignTopWith="btnFour" RelativePanel.RightOf="btnFive"></Button>
+            <Button Name="btnSeven" Height="110" Width="200" Background="Gray" RelativePanel.Above="btnFour"></Button>
+            <Button Name="btnEight" Height="110" Width="200" Background="Gray" RelativePanel.AlignTopWith="btnSeven" RelativePanel.RightOf="btnSeven"></Button>
+            <Button Name="btnNine" Height="110" Width="200" Background="Gray" RelativePanel.AlignTopWith="btnSeven" RelativePanel.RightOf="btnEight"></Button>
+        </RelativePanel>
+        <StackPanel Grid.ColumnSpan="3" Background="{StaticResource Rainbow}"></StackPanel>
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Background="{StaticResource Rainbow}"></StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2" Background="{StaticResource Rainbow}"></StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Background="{StaticResource Rainbow}"></StackPanel>
+
+    </Grid>
+    
+</Page>

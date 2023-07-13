@@ -3,15 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:A2KyleGalway"
+        xmlns:local="clr-namespace:A2KyleGalway" d:DataContext="{d:DesignInstance Type=local:PizzaItem}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" Loaded="initializeLists">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" Loaded="InitializeWindowItems">
     <DockPanel LastChildFill="True">
         <StatusBar DockPanel.Dock="Bottom">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Status: "> </Label>
-                <Label x:Name="lblStatus" Content="Application Launched"></Label>
-            </StackPanel>
+            <Grid Width="800">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width=".62*" />
+                    <ColumnDefinition Width="1.5*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Label Content="Status: "></Label>
+                    <Label x:Name="lblStatus" Content="Application Launched"></Label>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" >
+                    <Label Content="Current Order ID: "></Label>
+                    <Label x:Name="lblOrder" Content="{Binding OrderID}">
+                        <Label.DataContext>
+                            <local:Order/>
+                        </Label.DataContext>
+                    </Label>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" >
+                    <Label Content="Current Customer: "></Label>
+                    <Label x:Name="lblCustomer" Content="{Binding FullName}">
+                        <Label.DataContext>
+                            <local:Customer/>
+                        </Label.DataContext>
+                    </Label>
+                </StackPanel>
+            </Grid>
         </StatusBar>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Options" Name="mnuOptions" >
@@ -19,7 +42,6 @@
                 <MenuItem Header="Confirm an Order" Name="menuConfirmOrder" InputGestureText="Ctrl+3" ></MenuItem>
                 <Separator />
                 <MenuItem Header="Enter Customer Information" Name="menuCustomerInformation" InputGestureText="Ctrl+2" />
-                <MenuItem Header="Enter Payment" Name="menuPaymentInformation" InputGestureText="Ctrl+4" ></MenuItem>
             </MenuItem>
         </Menu>
         <TabControl DockPanel.Dock="Top">
@@ -40,12 +62,13 @@
                     <Label Grid.Row="0" Grid.Column="2" Content="Order a Drink" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
 
                     <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="False" Margin="40 0">
-                        <Button DockPanel.Dock="Left" Name="btnAddPizza" Width="100" Height="40" Content="Add Pizza"></Button>
-                        <Button DockPanel.Dock="Right" Name="btnConfirmOrder" Width="100" Height="40" Content="Finish Order"></Button>
+                        <Button DockPanel.Dock="Left" Name="btnAddPizza" Width="100" Height="40" Content="Add Pizza" Click="AddPizzaToOrderTemplate"></Button>
+                        <Button DockPanel.Dock="Right" Name="btnConfirmOrder" Width="100" Height="40" Content="Finish Order" Click="FinalizeOrder"></Button>
                     </DockPanel>
-                    <Button Name="btnAddSide" Grid.Row="2" Grid.Column="1" Width="100" Height="40" Content="Add Side"></Button>
-                    <Button Name="btnAddDrink" Grid.Row="2" Grid.Column="2" Width="100" Height="40" Content="Add Drink"></Button>
-                    
+
+                    <Button Name="btnAddSide"  Grid.Row="2" Grid.Column="1" Width="100" Height="40" Content="Add Side" Click="AddSideToOrderTemplate" ></Button>
+                    <Button Name="btnAddDrink"  Grid.Row="2" Grid.Column="2" DockPanel.Dock="Right" Width="70" Height="40" Content="Add Drink" Click="AddDrinkToOrderTemplate"></Button>
+
                     <Grid Grid.Row="1" Grid.Column="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
@@ -59,51 +82,190 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <ComboBox Name="listSize" VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2"></ComboBox>
-                        <ComboBox Name="listType" VerticalAlignment="Center" Margin="10" Grid.Column="2" Grid.ColumnSpan="2"></ComboBox>
+                        <ComboBox Name="listSize" VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2" SelectionChanged="UpdatePizzaTemplateSize"></ComboBox>
+                        <ComboBox Name="listType" VerticalAlignment="Center" Margin="10" Grid.Column="2" Grid.ColumnSpan="2" SelectionChanged="UpdatePizzaTemplateType"></ComboBox>
 
                         <ComboBox Name="listAddTopping" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="10"></ComboBox>
                         <ComboBox Name="listRemoveTopping" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="10"></ComboBox>
 
-                        <Button Content="Add Topping" Name="btnAddTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="1"> </Button>
-                        <Button Content="Remove Topping" Name="btnRemoveTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="2"></Button>
+                        <Button Content="Add Topping" Name="btnAddTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="1" Click="AddToppingToTemplatePizza"> </Button>
+                        <Button Content="Remove Topping" Name="btnRemoveTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="2" Click="RemoveToppingFromTemplatePizza"></Button>
 
-
-                        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="4" Name="lblPizzaTemplate" />
+                        <Label Content="{Binding PizzaString}"  Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="4" Name="lblPizzaTemplate" />
                     </Grid>
+                    <DockPanel Grid.Row="1" Grid.Column="1">
+                        <DockPanel DockPanel.Dock="Bottom" Width="160">
+                            <Label Content="Quantity: "></Label>
+                            <TextBox Text="1" Name="txtSideQuantity" DockPanel.Dock="Left" FontSize="16" VerticalContentAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <ListBox Name="listSideItems" DockPanel.Dock="Top" Margin="5 20" />
+                    </DockPanel>
+
+                   
+                    <DockPanel Grid.Row="1" Grid.Column="2">
+                        <DockPanel DockPanel.Dock="Bottom" Width="120">
+                            <Label Content="Quantity: "> </Label>
+                            <TextBox Text="1" Name="txtDrinkQuantity" DockPanel.Dock="Left" FontSize="16" VerticalContentAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <ListBox DockPanel.Dock="Top" Name="listDrinkItems" Margin="5 20" />
+                    </DockPanel>
                     
-                    <ListBox Name="listSideItems" Grid.Row="1" Grid.Column="1" Margin="5 20" />
-                    <ListBox Name="listDrinkItems" Grid.Row="1" Grid.Column="2" Margin="5 20" />
                 </Grid>
             </TabItem>
             <TabItem Name="TabConfirm" Header="Confirm an Order">
                 <Grid>
                     <Grid.ColumnDefinitions>
-
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
+                    <Label Content="Select an Order" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                    <ListBox ItemsSource="{Binding ListOrders}" Name="listOpenOrders" Grid.Row="1" Grid.Column="0" Margin="10" DisplayMemberPath="OrderString">
+                        <ListBox.DataContext>
+                            <local:OrderList/>
+                        </ListBox.DataContext>
+
+                    </ListBox>
+                    <Button Name="btnSelectOrder" Grid.Row="2" Grid.Column="0" Width="100" Height="40" Content="Select Order" Click="ChangeOrderTemplate"></Button>
+                    <Label Content="Order Details" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                    <DockPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                        <DockPanel DockPanel.Dock="Bottom">
+                            <Label DockPanel.Dock="Left" Content="Total: " Width="100" HorizontalContentAlignment="Right"></Label>
+                            <Label Content="{Binding Price}" Name="lblTotalCost" DockPanel.Dock="Bottom">
+                                <Label.DataContext>
+                                    <local:Order/>
+                                </Label.DataContext>
+                            </Label>
+                        </DockPanel>
+
+                        <DockPanel DockPanel.Dock="Bottom">
+                            <Label DockPanel.Dock="Left" Content="Tax: " Width="100" Height="30" HorizontalContentAlignment="Right"></Label>
+                            <Label Content="{Binding TaxPrice}" DockPanel.Dock="Right" Name="lblTax">
+                                <Label.DataContext>
+                                    <local:Order/>
+                                </Label.DataContext>
+                            </Label>
+                        </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+                            <Label DockPanel.Dock="Left" Content="Cost: " Width="100" HorizontalContentAlignment="Right"></Label>
+                            <DockPanel DockPanel.Dock="Left" Width="250">
+                                <Button DockPanel.Dock="Right" Name="btnRemoveItem" Grid.Column="0" Width="100" Height="30" Content="Remove Item" Click="RemoveItemFromOrder"></Button>
+
+                                <Label Content="{Binding TotalPrice}" DockPanel.Dock="Right" Name="lblCost" >
+                                    <Label.DataContext>
+                                        <local:Order/>
+                                    </Label.DataContext>
+                                </Label>
+                            </DockPanel>
+                        </DockPanel>
+
+                        <ListBox ItemsSource="{Binding DisplayItems}" DockPanel.Dock="Top" x:Name="listSelectedItems" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10">
+                            <ListBox.DataContext>
+                                <local:Order/>
+                            </ListBox.DataContext>
+                        </ListBox>
+    
+                    </DockPanel>
+
+                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button DockPanel.Dock="Left" Name="btnOrderAgain" Grid.Column="0" Width="100" Height="40" Content="Order Again" Click="OrderAgain"></Button>
+                        <Button DockPanel.Dock="Left" Name="btnClearOrder" Grid.Column="1" Width="100" Height="40" Content="Clear Order" Click="ClearOrder"></Button>
+                        <Button DockPanel.Dock="Left" Name="btnCheckout"  Grid.Column="2" Width="100" Height="40" Content="Finish Order" Click="CheckoutOrder"></Button>
+                    </Grid>
+
                 </Grid>
             </TabItem>
             <TabItem Name="TabCustomerInformation" Header="Enter Customer Information">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-
-                        </Grid.RowDefinitions>
-                    </Grid>
-                </TabItem>
-            <TabItem Name="TabPaymentInformation" Header="Enter Payment Information">
                 <Grid>
                     <Grid.ColumnDefinitions>
-
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Select Customer" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <ListBox Name="listCustomers" ItemsSource="{Binding DisplayList}"  Grid.Row="1" Margin="10" DisplayMemberPath="CustomerDisplay">
+                        <ListBox.DataContext>
+                            <local:CustomerList/>
+                        </ListBox.DataContext>
+
+                    </ListBox>
+                    <Button Content="Select Customer" Grid.Row="2"  Width="100" Height="40"></Button>
+
+                    <Label Grid.Column="1" Content="Enter Customer Info" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="First Name: "></Label>
+                        <Label Grid.Row="1" Content="Last Name: "></Label>
+                        <Label Grid.Row="2" Content="Address: "></Label>
+                        <Label Grid.Row="3" Content="Province: "></Label>
+                        <Label Grid.Row="4" Content="City: "></Label>
+                        <Label Grid.Row="5" Content="Postal Code: "></Label>
+                        <Label Grid.Row="6" Content="Contact No: "></Label>
+                        <Label Grid.Row="7" Content="Email: "></Label>
+
+                        <TextBox Name="txtFirstName" Grid.Row="0" Grid.Column="1"></TextBox>
+                        <TextBox Name="txtLastName" Grid.Row="1" Grid.Column="1"></TextBox>
+                        <TextBox Name="txtAddress" Grid.Row="2" Grid.Column="1"></TextBox>
+                        <TextBox Name="txtProvince" Grid.Row="3" Grid.Column="1"></TextBox>
+                        <TextBox Name="txtCity" Grid.Row="4" Grid.Column="1"></TextBox>
+                        <TextBox Name="txtPostalCode" Grid.Row="5" Grid.Column="1"></TextBox>
+                        <TextBox Name="txtContactNo" Grid.Row="6" Grid.Column="1"></TextBox>
+                        <TextBox Name="txtEmail" Grid.Row="7" Grid.Column="1"></TextBox>
+                    </Grid>
+                    <Button Name="btnAddCustomer" Grid.Column="1" Grid.Row="2" Content="Add Customer" DockPanel.Dock="Left" Width="100" Height="40" Click="AddCustomer"></Button>
+                    <Label Grid.Column="2" Content="Enter Payment Info" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                    <Grid Grid.Row="1" Grid.Column="2" Margin="10 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="Card Number " Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Bottom"></Label>
+                        <TextBox Name="txtCardNumber"  Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top"></TextBox>
+
+                        <Label Content="Payment Type " Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Bottom"></Label>
+                        <ComboBox Name="listPaymentType" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top"></ComboBox>
+
+                        <Label Content="Amount Due " Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Bottom"></Label>
+                        <TextBox Name="txtAmountDue" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" IsReadOnly="True"></TextBox>
+                    </Grid>
+
+                    <Button Name="btnPayForOrder" Grid.Column="2" Grid.Row="2" Content="Place Order" DockPanel.Dock="Left" Width="100" Height="40"></Button>
+
                 </Grid>
             </TabItem>
         </TabControl>

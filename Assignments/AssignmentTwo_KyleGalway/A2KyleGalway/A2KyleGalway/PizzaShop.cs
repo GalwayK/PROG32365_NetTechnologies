@@ -61,6 +61,11 @@ namespace A2KyleGalway
             return listOrders[orderNumber];
         }
 
+        public Order GetLastOrder()
+        {
+            return listOrders.Last<Order>();
+        }
+
         public decimal GetTotalOrderPrice(int orderNumber)
         {
             return listOrders[orderNumber].Price;

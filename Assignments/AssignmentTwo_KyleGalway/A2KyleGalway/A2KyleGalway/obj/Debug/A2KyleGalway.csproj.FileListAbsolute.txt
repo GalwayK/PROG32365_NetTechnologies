@@ -14,3 +14,4 @@ C:\Semester4SDNE\PROG32365_NetTechnologies\Assignments\AssignmentTwo_KyleGalway\
 C:\Semester4SDNE\PROG32365_NetTechnologies\Assignments\AssignmentTwo_KyleGalway\A2KyleGalway\A2KyleGalway\obj\Debug\A2KyleGalway.csproj.CoreCompileInputs.cache
 C:\Semester4SDNE\PROG32365_NetTechnologies\Assignments\AssignmentTwo_KyleGalway\A2KyleGalway\A2KyleGalway\obj\Debug\A2KyleGalway.exe
 C:\Semester4SDNE\PROG32365_NetTechnologies\Assignments\AssignmentTwo_KyleGalway\A2KyleGalway\A2KyleGalway\obj\Debug\A2KyleGalway.pdb
+C:\Semester4SDNE\PROG32365_NetTechnologies\Assignments\AssignmentTwo_KyleGalway\A2KyleGalway\A2KyleGalway\obj\Debug\GeneratedInternalTypeHelper.g.cs

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,20 +9,33 @@ using System.Windows.Navigation;
 
 namespace A2KyleGalway
 {
-    internal class Order: List<KeyValuePair<OrderItem, int>>
+    internal class Order: List<KeyValuePair<OrderItem, int>>, INotifyCollectionChanged, INotifyPropertyChanged
     {
-        public Order() 
-        {
-            CalculateFinalOrderPrice();
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
+        private static int orderCount = 0;
+
+        public int OrderID 
+        { 
+            get; set; 
         }
 
-        private OrderStatusCode statusCode = OrderStatusCode.IN_PROGRESS;
+        public Order() 
+        {
+            Console.WriteLine("Order: " + Order.orderCount);
+            CalculateFinalOrderPrice();
+            OrderID = Order.orderCount++;
+        }
+
+        public OrderStatusCode statusCode = OrderStatusCode.IN_PROGRESS;
+
         public Customer Customer { get; set; }
 
         public string Status 
         { 
             get => arrOrderStatuses[(int)statusCode]; 
         }
+
         public decimal TaxPrice
         {
             get; set;
@@ -42,18 +57,53 @@ namespace A2KyleGalway
         public void ChangeOrderStatus(OrderStatusCode statusCode)
         {
             this.statusCode = statusCode;
+            UpdateProperties();
         }
 
-        public new void Add(KeyValuePair<OrderItem, int> item)
+        private void UpdateProperties()
         {
-            base.Add(item);
-            CalculateFinalOrderPrice();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Price)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TaxPrice)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalPrice)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(OrderString)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayItems)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Status)));
+
         }
 
-        public new void Remove(KeyValuePair<OrderItem, int> item)
+        public new void Add(KeyValuePair<OrderItem, int> orderPair)
         {
-            base.Remove(item);
+            base.Add(orderPair);
+
+            CollectionChanged?.Invoke(this, new
+                NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, orderPair));
+
             CalculateFinalOrderPrice();
+            UpdateProperties();
+        }
+
+        public void Add(OrderItem item, int quantity)
+        {
+            KeyValuePair<OrderItem, int> orderPair = new KeyValuePair<OrderItem, int>(item, quantity);
+            base.Add(orderPair);
+
+            CollectionChanged?.Invoke(this, new
+                NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, orderPair));
+
+            CalculateFinalOrderPrice();
+            UpdateProperties();
+        }
+
+        public new void RemoveAt(int index)
+        {
+            KeyValuePair<OrderItem, int> orderPair = this[index];
+            base.RemoveAt(index);
+
+            CollectionChanged?.Invoke(this, new
+                NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, orderPair));
+
+            CalculateFinalOrderPrice();
+            UpdateProperties();
         }
 
         private decimal CalculateFinalOrderPrice()
@@ -85,9 +135,36 @@ namespace A2KyleGalway
             return Price;
         }
 
+        public string OrderString
+        {
+            get
+            {
+                return this.ToString();
+            }
+        }
+
+        public List<string> DisplayItems
+        {
+            get 
+            { 
+                return this.GetDisplayItems(); 
+            }
+        }
+
+        public List<string> GetDisplayItems()
+        {
+            List<string> displayList = new List<string>();
+            foreach (KeyValuePair<OrderItem, int> orderInfo in this) 
+            { 
+                displayList.Add($"{orderInfo.Key.ToString()}, quantity: {orderInfo.Value}");
+            }
+
+            return displayList;
+        }
+
         public override string ToString()
         {
-            return $"Total Price: {Price:C} Status: {Status}";
+            return $"ID: {OrderID} Total Price: {Price:C} Status: {Status}";
         }
 
         public enum OrderStatusCode: int
