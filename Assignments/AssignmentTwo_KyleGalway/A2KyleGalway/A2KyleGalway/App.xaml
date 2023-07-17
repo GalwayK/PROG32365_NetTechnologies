@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:A2KyleGalway"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="StyleDictionary.xaml"></ResourceDictionary>
     </Application.Resources>
 </Application>

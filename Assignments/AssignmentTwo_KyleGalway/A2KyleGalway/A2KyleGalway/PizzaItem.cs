@@ -104,11 +104,11 @@ namespace A2KyleGalway
         }
 
         static List<string> listStrVegetableToppings = new List<string>() { "Pineapple", "Extra Cheese",
-                    "Dried Shrimp (why)", "Mushrooms", "Sun Dried Tomatoes", "Daikon", "Spinach",
+                     "Mushrooms", "Sun Dried Tomatoes", "Daikon", "Spinach",
                     "Roasted Garlic", "Jalapeno" };
 
         static List<string> listStrMeatToppings = new List<string>() {"Ground Beef", "Shredded Chicken",
-                    "Grilled Chicken", "Pepperoni", "Ham", "Bacon", "Steak", "Anchovies"};
+                    "Grilled Chicken", "Pepperoni", "Ham", "Bacon", "Steak", "Anchovies", "Dried Shrimp (why)"};
 
         static List<string> listStrPizzaSizes = new List<string>() { "Small", "Medium", "Large", "Extra-large" };
 

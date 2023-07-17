@@ -10,7 +10,19 @@ namespace A2KyleGalway
     public class Customer
     {
         private static int numCustomers = 0;
-        public static Customer PlaceholderCustomer = new Customer("", "", "", "", "", "", "", "");
+        public static Customer PlaceholderCustomer = new Customer("No Customer Selected", "", "", "", "", "", 
+            "", "");
+
+        public static List<string> GetListPaymentTypes()
+        {
+            List<string> listPaymentTypes = new List<string>()
+            {
+                "Cash", "Master Card", "Visa Card", "Amex Card" 
+            };
+
+            return listPaymentTypes;
+        }
+
 
         public int Id { get; set; }
         public string FirstName { get; set; }

@@ -21,266 +21,279 @@ namespace A2KyleGalway
     
     public partial class MainWindow : Window
     {
-        private PizzaShop pizzaShop = PizzaShop.SingletonPizzaShopFactory();
-        private PizzaItem pizzaItemTemplate = new PizzaItem();
-        private Order orderTemplate = new Order();
-        private Customer customerTemplate = Customer.PlaceholderCustomer;
+        private PizzaShop pizzaShop;
+        private PizzaItem pizzaItemTemplate;
+        private Order orderTemplate;
+        private Customer customerTemplate;
 
         public MainWindow()
         {
+            pizzaShop = PizzaShop.SingletonPizzaShopFactory();
+            pizzaItemTemplate = PizzaShop.MakeNewPizza();
+            orderTemplate = pizzaShop.MakeTrackedOrder();
+            customerTemplate = PizzaShop.DefaultCustomer;
             InitializeComponent();
         }
 
         private void InitializeWindowItems(object sender, RoutedEventArgs e)
         {
-            void initializeStatusBar()
-            {
-                lblCustomer.DataContext = customerTemplate;
-                lblOrder.DataContext = orderTemplate;
-            }
-
             void initializePlaceOrderTab()
             {
-                listSideItems.ItemsSource = MiscItem.listOtherItems;
-                listDrinkItems.ItemsSource = MiscItem.listDrinkItems;
+                listSideItems.ItemsSource = PizzaShop.PizzaShopListSideItems;
+                listDrinkItems.ItemsSource = PizzaShop.PizzaShopListDrinkItems;
 
-                listSize.ItemsSource = PizzaItem.listAvailablePizzaSizes;
-                listType.ItemsSource = PizzaItem.listAvailablePizzaTypes;
+                listSize.ItemsSource = PizzaShop.ListPizzaSizes;
+                listType.ItemsSource = PizzaShop.ListPizzaTypes;
 
-                listSize.SelectedIndex = 0;
-                listType.SelectedIndex = 0;
-
-                lblPizzaTemplate.DataContext = this.pizzaItemTemplate;
-
-                listRemoveTopping.ItemsSource = PizzaItem.listAvailableToppings;
-                listAddTopping.ItemsSource = PizzaItem.listAvailableToppings;
-
-                listRemoveTopping.SelectedIndex = 0;
-                listAddTopping.SelectedIndex = 0;
+                listRemoveTopping.ItemsSource = PizzaShop.ListPizzaToppings;
+                listAddTopping.ItemsSource = PizzaShop.ListPizzaToppings;
             }
 
             void initializeConfirmOrderTabItems()
             {
                 listOpenOrders.DataContext = pizzaShop.listOrders;
-
-                listSelectedItems.DataContext = orderTemplate;
-                InitializeCostLabels();
             }
 
             void initializeCustomerInformationTabItems()
             {
-                pizzaShop.customerList.Add(new Customer("Liam", "Galway", "", "", "", "", "", ""));
 
-                txtAmountDue.DataContext = orderTemplate;
+                listPaymentType.ItemsSource = PizzaShop.ListPaymentTypes;
                 listCustomers.DataContext = pizzaShop.customerList;
             }
 
-            AddOrderToListOrders(orderTemplate);
-            initializeStatusBar();
             initializePlaceOrderTab();
             initializeConfirmOrderTabItems();
             initializeCustomerInformationTabItems();
+
+            ResetPizzaTemplate();
+            ResetOrderTemplate();
+            ResetCustomerTemplate();
         }
 
-        private void MoveToPlaceOrderTab()
+        void ResetPizzaBindings()
         {
-            TabOrder.Focus();     
+            lblPizzaTemplate.DataContext = pizzaItemTemplate;
         }
 
-        private void MoveToConfirmOrderTab()
+        void ResetOrderBindings()
         {
-            TabConfirm.Focus();
-        }
+            listSelectedItems.DataContext = orderTemplate;
+            listSelectedItems.ItemsSource = orderTemplate;
 
-        private void MoveToCustomerInformationTab()
-        {
-            TabCustomerInformation.Focus();
-        }
-
-        void InitializeCostLabels()
-        {
+            lblOrder.DataContext = orderTemplate;
             lblCost.DataContext = orderTemplate;
             lblTax.DataContext = orderTemplate;
             lblTotalCost.DataContext = orderTemplate;
+            txtAmountDue.DataContext = orderTemplate;
+            listSelectedItems.DataContext = orderTemplate;
+            lblOrder.DataContext = orderTemplate;
+            txtAmountDue.DataContext = orderTemplate;
         }
 
+        void ResetCustomerBindings()
+        {
+            lblCustomer.DataContext = customerTemplate;
+        }
         void ResetPizzaTemplate()
         {
-            pizzaItemTemplate = new PizzaItem();
+            pizzaItemTemplate = PizzaShop.MakeNewPizza();
+            ResetPizzaBindings();
         }
 
         void ResetOrderTemplate()
         {
             Order lastOrder = pizzaShop.GetLastOrder();
-            if (lastOrder.Price == 0.0M && lastOrder.statusCode == Order.OrderStatusCode.IN_PROGRESS)
+            if (lastOrder != null && lastOrder.Price == 0.0M && lastOrder.statusCode == Order.OrderStatusCode.IN_PROGRESS)
             {
                 orderTemplate = lastOrder;
             }
             else 
             {
-                orderTemplate = new Order();
-                pizzaShop.listOrders.Add(orderTemplate);
+                orderTemplate = pizzaShop.MakeTrackedOrder();  
+                AddOrderToListOrders(orderTemplate);
             }
-            
+            ResetOrderBindings();
+            ResetAllOrderInputs();
+        }
+
+        void ResetCustomerTemplate()
+        {
+            customerTemplate = PizzaShop.DefaultCustomer;
+            ResetCustomerBindings();
+            ResetCustomerInformationInputs();
+        }
+
+        void ResetDrinkInputs()
+        {
+            listDrinkItems.SelectedIndex = 0;
+            txtDrinkQuantity.Text = "1";
+        }
+
+        void ResetSideInputs()
+        {
+            listSideItems.SelectedIndex = 0;
+            txtSideQuantity.Text = "1";
         }
 
         void ResetPizzaInputs()
         {
-            listAddTopping.SelectedIndex = 0;
-            listRemoveTopping.SelectedIndex = 0;
-            listType.SelectedIndex = 0;
             listSize.SelectedIndex = 0;
+            listType.SelectedIndex = 0;
+            listRemoveTopping.SelectedIndex = 0;
+            listAddTopping.SelectedIndex = 0;
         }
 
-        void ResetListSides()
-        {
-            listSideItems.SelectedIndex = 0;
-        }
-
-        void ResetListDrinks()
-        {
-            listDrinkItems.SelectedIndex = 0;
-        }
-
-        void ResetPlaceOrderTab()
+        void ResetPlaceOrderInputs()
         {
             ResetPizzaInputs();
-            ResetListSides();
-            ResetListDrinks();
+            ResetSideInputs();
+            ResetDrinkInputs();
         }
 
-        void ResetConfirmOrderTab()
+        void ResetConfirmOrderInputs()
         {
-            InitializeCostLabels();
-            listSelectedItems.DataContext = orderTemplate;
+            listOpenOrders.SelectedIndex = 0;
+            listSelectedItems.SelectedIndex = 0;
         }
 
-        void ResetStatusBar()
+        void ResetAllOrderInputs()
         {
-            lblOrder.DataContext = orderTemplate;
-            lblCustomer.DataContext = customerTemplate;
+            ResetConfirmOrderInputs();
+            ResetPlaceOrderInputs();
         }
 
-        void ResetOrderTabs()
+        void ResetCustomerInformationInputs()
         {
-            ResetPlaceOrderTab();
-            ResetConfirmOrderTab();
-            ResetStatusBar();
+            txtAddress.Text = string.Empty;
+            txtCity.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            txtContactNo.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtProvince.Text = string.Empty;
+            txtPostalCode.Text = string.Empty;
+            txtCardNumber.Text = string.Empty;
+            listPaymentType.SelectedIndex = 0;
+        }
+
+        void ResetAllInputs()
+        {
+            ResetPlaceOrderInputs();
+            ResetConfirmOrderInputs();
+            ResetCustomerInformationInputs();
         }
 
         private void AddOrderToListOrders(Order order)
         {
-            pizzaShop.listOrders.Add(order);
+            pizzaShop.AddOrderToListOrders(order);
         }
 
         private void AddToppingToTemplatePizza(object sender, RoutedEventArgs e)
         {
             int toppingIndex = listAddTopping.SelectedIndex;
-            Topping topping = PizzaItem.listAvailableToppings[toppingIndex];
-            this.pizzaItemTemplate.AddTopping(topping);
+
+            pizzaShop.AddToppingToPizza(pizzaItemTemplate, toppingIndex);
         }
 
         private void RemoveToppingFromTemplatePizza(object sender, RoutedEventArgs e)
         {
             int toppingIndex = listRemoveTopping.SelectedIndex;
-            Topping topping = PizzaItem.listAvailableToppings[toppingIndex];
-            this.pizzaItemTemplate.RemoveTopping(topping);
+
+            pizzaShop.RemoveToppingFromPizza(pizzaItemTemplate, toppingIndex);
         }
 
         private void UpdatePizzaTemplateType(object sender, SelectionChangedEventArgs e)
         {
             int typeIndex = listType.SelectedIndex;
-            PizzaItem.PizzaType pizzaType = PizzaItem.listAvailablePizzaTypes[typeIndex];
-            pizzaItemTemplate.ChangeType(pizzaType);
+            
+            pizzaShop.UpdatePizzaType(pizzaItemTemplate, typeIndex);
         }
 
         private void UpdatePizzaTemplateSize(object sender, SelectionChangedEventArgs e)
         {
             int sizeIndex = listSize.SelectedIndex;
-            PizzaItem.PizzaSize pizzaSize = PizzaItem.listAvailablePizzaSizes[sizeIndex];
-            pizzaItemTemplate.ChangeSize(pizzaSize);
+
+            pizzaShop.UpdatePizzaSize(pizzaItemTemplate, sizeIndex);
         }
 
         private void AddPizzaToOrderTemplate(object sender, RoutedEventArgs e)
         {
-            orderTemplate.Add(pizzaItemTemplate, 1);
-            ResetPizzaTemplate();
-            ResetPizzaInputs();
+            try
+            {
+                pizzaShop.AddPizzaItemToOrder(orderTemplate, pizzaItemTemplate);
+
+                lblStatus.Content = $"Added {pizzaItemTemplate}";
+
+                ResetPizzaTemplate();
+                ResetPizzaInputs();
+            }
+            catch (Exception)
+            {
+                lblStatus.Content = "Error adding pizza";
+            }
         }
 
         private void AddSideToOrderTemplate(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Adding Side!");
             try
             {
                 int intQuantity = Convert.ToInt32(txtSideQuantity.Text);
-                if (intQuantity < 0) 
+                int sideIndex = listSideItems.SelectedIndex;
+                if (intQuantity <= 0) 
                 {
                     throw new FormatException();
                 }
-                int sideIndex = listSideItems.SelectedIndex;
-                MiscItem sideItem = MiscItem.listOtherItems[sideIndex];
-                orderTemplate.Add(sideItem, intQuantity);
+                pizzaShop.AddSideItemToOrder(orderTemplate, sideIndex, intQuantity);
+                lblStatus.Content = $"Item: {listSideItems.SelectedItem} Quantity: {intQuantity} added to order";
 
-                Console.WriteLine(orderTemplate);
-
-                lblStatus.Content = $"Item: {sideItem.StrName} Quantity: {intQuantity} added to order";
+                ResetSideInputs();
             }
-            catch (IndexOutOfRangeException ex)
+            catch (IndexOutOfRangeException)
             {
-                Console.WriteLine(ex);
                 lblStatus.Content = "Error Adding Side: Must select a drink to add to order.";
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
-                Console.WriteLine(ex);
                 lblStatus.Content = "Error Adding Side: Please enter a positive number as quantity.";
             }
-            catch (Exception ex) 
+            catch (Exception) 
             {
-                Console.WriteLine(ex);
-                lblStatus.Content = "Error Adding Side: An error occured.";
+                lblStatus.Content = "Error Adding Side";
             }
         }
 
         private void AddDrinkToOrderTemplate(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Adding Drink!");
-
             try
             {
                 int intQuantity = Convert.ToInt32(txtDrinkQuantity.Text);
-                if (intQuantity < 0)
+                int drinkIndex = listDrinkItems.SelectedIndex;
+                if (intQuantity <= 0)
                 {
                     throw new FormatException();
                 }
-                int drinkIndex = listDrinkItems.SelectedIndex;
-                MiscItem drinkItem = MiscItem.listDrinkItems[drinkIndex];
-                orderTemplate.Add(drinkItem, intQuantity);
 
-                lblStatus.Content = $"Item: {drinkItem.StrName} Quantity: {intQuantity} added to order";
+                pizzaShop.AddDrinkItemToOrder(orderTemplate, drinkIndex, intQuantity);
+                lblStatus.Content = $"Item: {listDrinkItems.SelectedItem} Quantity: {intQuantity} added to order";
+
+                ResetDrinkInputs();
             }
-            catch (IndexOutOfRangeException ex)
+            catch (IndexOutOfRangeException)
             {
-                Console.WriteLine(ex);
                 lblStatus.Content = "Error Adding Drink: Must select a drink to add to order.";
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
-                Console.WriteLine(ex);
                 lblStatus.Content = "Error Adding Drink: Please enter a positive number as quantity.";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex);
-                lblStatus.Content = "Error Adding Drink: An error occured.";
+                lblStatus.Content = "Error Adding Drink.";
             }
-
         }
 
         private void FinalizeOrder(object sender, RoutedEventArgs e)
         {
-            PlaceNewOrder();
             MoveToConfirmOrderTab();
         }
 
@@ -292,27 +305,33 @@ namespace A2KyleGalway
 
         private void PlaceNewOrder()
         {
-            Console.WriteLine("Making new order!");
-            if (!pizzaShop.listOrders.Contains(orderTemplate))
-            {
-                this.AddOrderToListOrders(orderTemplate);
-            }
+            pizzaShop.AddOrderToOrderList(orderTemplate);
             ResetOrderTemplate();
-            ResetOrderTabs();
+            ResetOrderBindings();
         }
 
-        private void ChangeOrderTemplate(object sender, RoutedEventArgs e)
+        private void SelectOrder(object sender, RoutedEventArgs e)
         {
-            int orderIndex = listOpenOrders.SelectedIndex;
-            Order order = pizzaShop.listOrders[orderIndex];
-            string strStatus = $"Error Changing Order: Selected Order is Complete or Cancelled";
-            if (order.statusCode == Order.OrderStatusCode.IN_PROGRESS)
+            string strStatus = $"Error: Cannot select Complete or Cancelled order";
+            try
             {
-                orderTemplate = pizzaShop.listOrders[orderIndex];
-                ResetOrderTabs();
-                strStatus = $"Current Order Changed, New Order: {orderTemplate}";
+                int orderIndex = listOpenOrders.SelectedIndex;
+                Order order = pizzaShop.GetOrder(orderIndex);
+
+                if (order.statusCode == Order.OrderStatusCode.IN_PROGRESS)
+                {
+                    orderTemplate = pizzaShop.listOrders[orderIndex];
+
+                    ResetOrderBindings();
+
+                    strStatus = $"Current order changed";
+                }
+                lblStatus.Content = strStatus;
             }
-            lblStatus.Content = strStatus;
+            catch (Exception) 
+            {
+                lblStatus.Content = "Error: Cannot select order";
+            }
         }
 
         private void RemoveItemFromOrder(object sender, RoutedEventArgs e)
@@ -320,175 +339,163 @@ namespace A2KyleGalway
             try
             {
                 int itemIndex = listSelectedItems.SelectedIndex;
-                OrderItem item = orderTemplate[itemIndex].Key;
+                pizzaShop.RemoveItemFromOrder(orderTemplate, itemIndex);
 
-                orderTemplate.RemoveAt(itemIndex);
+                lblStatus.Content = $"Removed item {listSelectedItems.SelectedItem}";
 
-                lblStatus.Content = $"Removed item {item}";
+                ResetConfirmOrderInputs();
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 lblStatus.Content = $"Error removing item";
             }
         }
 
         private void ClearOrder(object sender, RoutedEventArgs e)
         {
-            orderTemplate.ChangeOrderStatus(Order.OrderStatusCode.CANCELLED);
+            pizzaShop.CancelOrder(orderTemplate);
             ResetOrderTemplate();
-            ResetOrderTabs();
 
             lblStatus.Content = "Order cancelled.";
         }
 
         private void CheckoutOrder(object sender, RoutedEventArgs e)
         {
-            bool isOrderEmpty = orderTemplate.Count == 0;
-            bool isOrderInactive = orderTemplate.statusCode != Order.OrderStatusCode.IN_PROGRESS;
-
-            string strStatus = "Cannot checkout empty order";
-            if (!isOrderEmpty) 
-            {
-                strStatus = "Cannot checkout inactive order";
-                if (!isOrderInactive)
-                {
-                    MoveToCustomerInformationTab();
-                    strStatus = "Checking out order";
-                }
-            }
-            lblStatus.Content = strStatus;
-            
+            MoveToCustomerInformationTab();
         }
 
         private void AddCustomer(object sender, RoutedEventArgs e)
         {
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim(); 
+            string address = txtAddress.Text.Trim();
+            string province = txtAddress.Text.Trim();
+            string email = txtEmail.Text.Trim();
+            string postal = txtPostalCode.Text.Trim();
+            string city = txtCity.Text.Trim();
+            string contactNumber = txtContactNo.Text.Trim();
 
+            if (firstName.Length == 0 || lastName.Length == 0 || address.Length == 0 || postal.Length == 0 || contactNumber.Length == 0)
+            {
+                lblStatus.Content = "Error: Customer must contain required fields.";
+            }
+            else
+            {
+                pizzaShop.CreateNewCustomer(firstName, lastName, address, province, email, postal, city, contactNumber);
+                lblStatus.Content = "Customer sucessfully added";
+                ResetCustomerInformationInputs();
+            }
+        }
+
+        private void SelectCustomer(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int customerIndex = listCustomers.SelectedIndex;
+                Customer customer = pizzaShop.GetCustomer(customerIndex);
+                if (customer == null) 
+                { 
+                    throw new NullReferenceException();
+                }
+
+                customerTemplate = customer;
+
+                ResetCustomerBindings();
+
+                lblStatus.Content = $"Customer changed, current customer: {customerTemplate.FullName}"; 
+            }
+            catch (Exception) 
+            {
+                lblStatus.Content = "Error: Must select a customer";
+            }
+        }
+
+        private void QuitCustomer(object sender, RoutedEventArgs e)
+        {
+            if (customerTemplate == Customer.PlaceholderCustomer)
+            {
+                lblStatus.Content = "Error: Already signed out.";
+            }
+            else
+            {
+                string strFullName = customerTemplate.FullName;
+                customerTemplate = Customer.PlaceholderCustomer;
+                lblStatus.Content = $"Signed out from {strFullName}";
+                ResetCustomerBindings();
+            }
+        }
+
+        private void PayForOrder(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (orderTemplate.Count <= 0)
+                {
+                    throw new Exception("Error: Cannot confirm an empty order");
+                }
+                else if (customerTemplate == PizzaShop.DefaultCustomer)
+                {
+                    throw new Exception("Error: Cannot confirm without signing in");
+                } 
+                else if (listPaymentType.SelectedIndex != 0 && txtCardNumber.Text.Trim().Length == 0)
+                {
+                    throw new Exception("Error: Card payments must provide a card number");
+                }
+
+                pizzaShop.ConfirmOrder(orderTemplate);
+                
+                MessageBox.Show($"Thanks {customerTemplate.FirstName}!\n Order #{orderTemplate.OrderID} will be delivered in twenty minutes!", "Order confirmed");
+                lblStatus.Content = $"Order #{orderTemplate.OrderID} Confirmed";
+
+                ResetOrderTemplate();
+                TabConfirm.Focus();
+            }
+            catch (Exception ex) 
+            {
+                lblStatus.Content = ex.Message;
+            }
+        }
+
+        private void MoveToPlaceOrderTab()
+        {
+            TabOrder.Focus();
+
+            lblStatus.Content = "Changed to add to order tab";
+
+            ResetAllInputs();
+        }
+
+        private void MoveToConfirmOrderTab()
+        {
+            TabConfirm.Focus();
+
+            lblStatus.Content = "Changed to confirm order tab";
+
+            ResetAllInputs();
+        }
+
+        private void MoveToCustomerInformationTab()
+        {
+            TabCustomerInformation.Focus();
+            lblStatus.Content = "Changed to customer information tab";
+            
+            ResetAllInputs();
+        }
+
+        private void MoveToPlaceOrderTab(object sender, RoutedEventArgs e)
+        {
+            MoveToPlaceOrderTab();
+        }
+
+        private void MoveToConfirmOrderTab(object sender, RoutedEventArgs e)
+        {
+            MoveToConfirmOrderTab();
+        }
+
+        private void MoveToCustomerInformationTab(object sender, RoutedEventArgs e)
+        {
+            MoveToCustomerInformationTab();
         }
     }
 }
-
-/*
-    void TestTabs()
-        {
-            void TestPizzas()
-            {
-                PizzaItem pizzaOne = new PizzaItem();
-                pizzaOne.ChangeSize(PizzaItem.listAvailablePizzaSizes[2]);
-                pizzaOne.ChangeType(PizzaItem.listAvailablePizzaTypes[2]);
-                pizzaOne.AddTopping(PizzaItem.listAvailableToppings[0]);
-                pizzaOne.AddTopping(PizzaItem.listAvailableToppings[10]);
-
-                Console.WriteLine("\n" + pizzaOne);
-
-                PizzaItem pizzaTwo = new PizzaItem(PizzaItem.listAvailablePizzaSizes[3],
-                    PizzaItem.listAvailablePizzaTypes[2]);
-                Console.WriteLine("\n" + pizzaTwo);
-
-                pizzaTwo.AddTopping(PizzaItem.listAvailableToppings[4]);
-                Console.WriteLine("\n" + pizzaTwo);
-                pizzaTwo.AddTopping(PizzaItem.listAvailableToppings[13]);
-                Console.WriteLine("\n" + pizzaTwo);
-                pizzaTwo.AddTopping(PizzaItem.listAvailableToppings[7]);
-                Console.WriteLine("\n" + pizzaTwo);
-            }
-
-            void TestOrder()
-            {
-                int orderNumber = pizzaShop.MakeNewOrder();
-                pizzaShop.AddDrinkItem(orderNumber, 3, 3);
-                pizzaShop.AddOtherItem(orderNumber, 5, 3);
-
-                PizzaItem pizzaOne = new PizzaItem();
-                pizzaOne.ChangeSize(PizzaItem.listAvailablePizzaSizes[2]);
-                pizzaOne.ChangeType(PizzaItem.listAvailablePizzaTypes[2]);
-                pizzaOne.AddTopping(PizzaItem.listAvailableToppings[0]);
-                pizzaOne.AddTopping(PizzaItem.listAvailableToppings[10]);
-
-                pizzaShop.AddPizzaToOrder(orderNumber, pizzaOne);
-
-                Console.WriteLine("\nTesting Order: ");
-                foreach (KeyValuePair<OrderItem, int> order in pizzaShop.listOrders[orderNumber])
-                {
-                    OrderItem item = order.Key;
-                    int quantity = order.Value;
-                    Console.WriteLine($"{item} Quantity: {quantity}");
-                }
-                Console.WriteLine(pizzaShop.GetOrder(orderNumber));
-                pizzaShop.CancelOrder(orderNumber);
-                Console.WriteLine(pizzaShop.GetOrder(orderNumber));
-
-                int orderTwoNumber = pizzaShop.MakeNewOrder();
-                pizzaShop.AddDrinkItem(orderTwoNumber, 0, 10);
-
-                Console.WriteLine("\nTesting Order: ");
-                foreach (KeyValuePair<OrderItem, int> order in pizzaShop.listOrders[orderTwoNumber])
-                {
-                    OrderItem item = order.Key;
-                    int quantity = order.Value;
-                    Console.WriteLine($"{item} Quantity: {quantity}");
-                }
-                Console.WriteLine(pizzaShop.GetOrder(orderTwoNumber));
-                pizzaShop.ConfirmOrder(orderTwoNumber);
-                Console.WriteLine(pizzaShop.GetOrder(orderTwoNumber));
-
-                Customer customer = new Customer("Kyle", "Galway", "2535 Barcella Crescent", "L5K1E5", "647-978-8468");
-                pizzaShop.AddCustomerToOrder(orderTwoNumber, customer);
-                Order testOrder = pizzaShop.GetOrder(orderTwoNumber);
-                Console.WriteLine($"Customer #{testOrder.Customer.Id}: {testOrder.Customer.FirstName} {testOrder.Customer.LastName}");
-
-            }
-
-            void PrintPizzaSizes()
-            {
-                foreach (PizzaItem.PizzaSize pizzaSize in PizzaItem.listAvailablePizzaSizes)
-                {
-                    Console.WriteLine($"Pizza Type #{pizzaSize.id}: {pizzaSize.strSize} {pizzaSize.numSizePrice:C}");
-                }
-                Console.WriteLine();
-            }
-
-            void PrintPizzaTypes()
-            {
-                foreach (PizzaItem.PizzaType pizzaType in PizzaItem.listAvailablePizzaTypes)
-                {
-                    Console.WriteLine($"Pizza Type #{pizzaType.id}: {pizzaType.strType} {pizzaType.numTypePrice:C}");
-                }
-                Console.WriteLine();
-            }
-
-            void PrintPizzaToppings()
-            {
-                foreach (Topping topping in PizzaItem.listAvailableToppings)
-                {
-                    Console.WriteLine($"Topping #{topping.id}: {topping.strName} {topping.GetToppingPrice():C}");
-                }
-                Console.WriteLine();
-            }
-
-            void PrintDrinkItems()
-            {
-                foreach (MiscItem item in MiscItem.listDrinkItems)
-                {
-                    Console.WriteLine($"Drink #{item.ItemId}: {item.StrName} {item.NumPrice:C}");
-                }
-                Console.WriteLine();
-            }
-
-            void PrintOtherItems()
-            {
-                foreach (MiscItem item in MiscItem.listOtherItems)
-                {
-                    Console.WriteLine($"Item #{item.ItemId}: {item.StrName} {item.NumPrice:C}");
-                }
-                Console.WriteLine();
-            }
-            PrintPizzaToppings();
-            PrintPizzaSizes();
-            PrintPizzaTypes();
-            PrintDrinkItems();
-            PrintOtherItems();
-            TestPizzas();
-            TestOrder();
-        }
- * 
-*/

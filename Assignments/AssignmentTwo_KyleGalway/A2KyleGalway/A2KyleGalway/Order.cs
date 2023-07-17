@@ -13,7 +13,6 @@ namespace A2KyleGalway
     {
         public event NotifyCollectionChangedEventHandler CollectionChanged;
         public event PropertyChangedEventHandler PropertyChanged;
-        private static int orderCount = 0;
 
         public int OrderID 
         { 
@@ -22,9 +21,19 @@ namespace A2KyleGalway
 
         public Order() 
         {
-            Console.WriteLine("Order: " + Order.orderCount);
+            this.OrderID = 0;
             CalculateFinalOrderPrice();
-            OrderID = Order.orderCount++;
+        }
+
+        public Order(int orderID)
+        {
+            this.OrderID = orderID;
+            CalculateFinalOrderPrice();
+        }
+
+        public Order DisplayList 
+        {
+            get => this;
         }
 
         public OrderStatusCode statusCode = OrderStatusCode.IN_PROGRESS;
@@ -33,7 +42,22 @@ namespace A2KyleGalway
 
         public string Status 
         { 
-            get => arrOrderStatuses[(int)statusCode]; 
+            get => arrOrderStatuses[(int)statusCode];
+        }
+
+        public string StrTaxPrice
+        {
+            get => TaxPrice.ToString("C");
+        }
+
+        public string StrTotalPrice
+        {
+            get => TotalPrice.ToString("C");
+        }
+
+        public string StrPrice
+        {
+            get => Price.ToString("C");
         }
 
         public decimal TaxPrice
@@ -62,13 +86,16 @@ namespace A2KyleGalway
 
         private void UpdateProperties()
         {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayList)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Price)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TaxPrice)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalPrice)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StrPrice)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StrTaxPrice)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StrTotalPrice)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(OrderString)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayItems)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Status)));
-
         }
 
         public new void Add(KeyValuePair<OrderItem, int> orderPair)
@@ -76,7 +103,7 @@ namespace A2KyleGalway
             base.Add(orderPair);
 
             CollectionChanged?.Invoke(this, new
-                NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, orderPair));
+                NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 
             CalculateFinalOrderPrice();
             UpdateProperties();
@@ -88,7 +115,7 @@ namespace A2KyleGalway
             base.Add(orderPair);
 
             CollectionChanged?.Invoke(this, new
-                NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, orderPair));
+                NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 
             CalculateFinalOrderPrice();
             UpdateProperties();
@@ -100,7 +127,7 @@ namespace A2KyleGalway
             base.RemoveAt(index);
 
             CollectionChanged?.Invoke(this, new
-                NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, orderPair));
+                NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 
             CalculateFinalOrderPrice();
             UpdateProperties();
