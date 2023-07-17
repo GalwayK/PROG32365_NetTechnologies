@@ -64,7 +64,6 @@
     <Compile Include="MeatTopping.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderList.cs" />
-    <Compile Include="OrderQuantity.cs" />
     <Compile Include="PizzaShop.cs" />
     <Compile Include="Topping.cs" />
     <Compile Include="VegetableTopping.cs" />

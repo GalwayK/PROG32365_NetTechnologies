@@ -11,14 +11,17 @@ namespace A2KyleGalway
 {
     internal class Order: List<KeyValuePair<OrderItem, int>>, INotifyCollectionChanged, INotifyPropertyChanged
     {
+        // Event Handler to notify GUI on property or collection change
         public event NotifyCollectionChangedEventHandler CollectionChanged;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // OrderID getter and setter
         public int OrderID 
         { 
             get; set; 
         }
 
+        // Constructors for Order
         public Order() 
         {
             this.OrderID = 0;
@@ -31,45 +34,55 @@ namespace A2KyleGalway
             CalculateFinalOrderPrice();
         }
 
+        // Property to return list of orders for GUI binding purposes
         public Order DisplayList 
         {
             get => this;
         }
 
+        // Field to retrieve status code of Order
         public OrderStatusCode statusCode = OrderStatusCode.IN_PROGRESS;
 
+        // Unused field to assign customer to Order
         public Customer Customer { get; set; }
 
+        // Getter to return current status of Order
         public string Status 
         { 
             get => arrOrderStatuses[(int)statusCode];
         }
 
+        // Getter for Tax Price formatted as money
         public string StrTaxPrice
         {
             get => TaxPrice.ToString("C");
         }
 
+        // Getter for TotalPrice formatted as money
         public string StrTotalPrice
         {
             get => TotalPrice.ToString("C");
         }
 
+        // Getter for Price formatted as money
         public string StrPrice
         {
             get => Price.ToString("C");
         }
 
+        // Getter and Setter for unformatted Tax Price
         public decimal TaxPrice
         {
             get; set;
         }
 
+        // Getter and Setter for unformatted Total Price
         public decimal TotalPrice
         { 
             get; set; 
         }
 
+        // Getter and Setter for unformatted Price
         public decimal Price
         {
             get
@@ -78,12 +91,14 @@ namespace A2KyleGalway
             }
         }
 
+        // Method to change Order status code
         public void ChangeOrderStatus(OrderStatusCode statusCode)
         {
             this.statusCode = statusCode;
             UpdateProperties();
         }
 
+        // Method to update all properties of Order whenever a change occurs
         private void UpdateProperties()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayList)));
@@ -98,6 +113,7 @@ namespace A2KyleGalway
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Status)));
         }
 
+        // Method to add new Order Item to order as KeyValuePair
         public new void Add(KeyValuePair<OrderItem, int> orderPair)
         {
             base.Add(orderPair);
@@ -109,6 +125,7 @@ namespace A2KyleGalway
             UpdateProperties();
         }
 
+        // Method to add new Order Item to order as OrderItem and int combination
         public void Add(OrderItem item, int quantity)
         {
             KeyValuePair<OrderItem, int> orderPair = new KeyValuePair<OrderItem, int>(item, quantity);
@@ -121,6 +138,7 @@ namespace A2KyleGalway
             UpdateProperties();
         }
 
+        // Method to remove Order Item from Order
         public new void RemoveAt(int index)
         {
             KeyValuePair<OrderItem, int> orderPair = this[index];
@@ -133,6 +151,7 @@ namespace A2KyleGalway
             UpdateProperties();
         }
 
+        // Method to recalculate total price whenever an item is added or removed
         private decimal CalculateFinalOrderPrice()
         {
             decimal CalculateTotalOrderPrice()
@@ -162,6 +181,7 @@ namespace A2KyleGalway
             return Price;
         }
 
+        // Getter to retrieve Order as String property to bind to GUI
         public string OrderString
         {
             get
@@ -170,6 +190,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Property to retrieve Order list as property to bind to GUI
         public List<string> DisplayItems
         {
             get 
@@ -178,6 +199,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Property to retrieve Order list formatted as strings for display purposes
         public List<string> GetDisplayItems()
         {
             List<string> displayList = new List<string>();
@@ -189,11 +211,13 @@ namespace A2KyleGalway
             return displayList;
         }
 
+        // Overridden ToString()
         public override string ToString()
         {
             return $"ID: {OrderID} Total Price: {Price:C} Status: {Status}";
         }
 
+        //  Enum containing all viable OrderStatusCodes
         public enum OrderStatusCode: int
         {
             IN_PROGRESS = 0, 
@@ -201,6 +225,7 @@ namespace A2KyleGalway
             CANCELLED = 2 
         }
 
-        static string[] arrOrderStatuses = {"In-progress", "Confirmed", "Cancelled"};
+        // Readonly array of viable OrderStatusMessages
+        static readonly string[] arrOrderStatuses = {"In-progress", "Confirmed", "Cancelled"};
     }
 }

@@ -8,6 +8,7 @@ namespace A2KyleGalway
 {
     internal class ListPizzaToppings: List<Topping>
     {
+        // Overriden ToString to display string of Pizza Toppings
         public override string ToString()
         {
             string strToppings = "no toppings";
@@ -25,11 +26,13 @@ namespace A2KyleGalway
             return strToppings;
         }
 
+        // These aren't necessary because I didn't end up needing to implement INotifyCollectionChanged 
         public new void Add(Topping topping)
         {
             base.Add(topping);
         }
 
+        // Please pretend they do something interesting and impressive
         public new void Remove(Topping topping)
         {
             base.Remove(topping);

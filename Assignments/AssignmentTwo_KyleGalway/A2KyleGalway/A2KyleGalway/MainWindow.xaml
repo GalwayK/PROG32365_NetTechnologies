@@ -59,7 +59,7 @@
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="Order a Pizza" Style="{StaticResource LabelCenterStyle}"></Label>
-                    <Label Grid.Row="0" Grid.Column="1" Content="Order a Side Item" Style="{StaticResource LabelCenterStyle}"> </Label>
+                    <Label Grid.Row="0" Grid.Column="1" Content="Order a Side Item" Style="{StaticResource LabelCenterStyle}"></Label>
                     <Label Grid.Row="0" Grid.Column="2" Content="Order a Drink" Style="{StaticResource LabelCenterStyle}"></Label>
 
                     <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="False" Margin="40 0">
@@ -89,7 +89,7 @@
                         <ComboBox Name="listAddTopping" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="8"></ComboBox>
                         <ComboBox Name="listRemoveTopping" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="8"></ComboBox>
 
-                        <Button Content="Add Topping" Name="btnAddTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="1" Click="AddToppingToTemplatePizza" Style="{StaticResource ButtonStyle}"> </Button>
+                        <Button Content="Add Topping" Name="btnAddTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="1" Click="AddToppingToTemplatePizza" Style="{StaticResource ButtonStyle}"></Button>
                         <Button Content="Remove Topping" Name="btnRemoveTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="2" Click="RemoveToppingFromTemplatePizza" Style="{StaticResource ButtonStyle}"></Button>
 
                         <Label Content="{Binding PizzaString}"  Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="4" Name="lblPizzaTemplate" />
@@ -151,7 +151,7 @@
                             </Label>
                         </DockPanel>
 
-                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+                        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
                             <Label DockPanel.Dock="Left" Content="Cost: " Width="100" HorizontalContentAlignment="Right"></Label>
                             <DockPanel DockPanel.Dock="Left" Width="300">
                                 <Button DockPanel.Dock="Right" Name="btnRemoveItem" Grid.Column="0" Content="Remove Item" Click="RemoveItemFromOrder" Style="{StaticResource ButtonStyle}"></Button>
@@ -184,7 +184,7 @@
                                 <local:Order/>
                             </DataGrid.DataContext>
                         </DataGrid>
-    
+
                     </DockPanel>
 
                     <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
@@ -203,26 +203,27 @@
             <TabItem Name="TabCustomerInformation" Header="Enter Customer Information">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="18*"></ColumnDefinition>
+                        <ColumnDefinition Width="180*"/>
+                        <ColumnDefinition Width="199*"></ColumnDefinition>
+                        <ColumnDefinition Width="199*"></ColumnDefinition>
+                        <ColumnDefinition Width="398*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="5*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Content="Select Customer" Style="{StaticResource LabelCenterStyle}"/>
-                    <ListBox Name="listCustomers" ItemsSource="{Binding DisplayList}"  Grid.Row="1" Margin="10" DisplayMemberPath="CustomerDisplay">
+                    <Label Grid.Row="0" Grid.Column="0" Content="Select Customer" Style="{StaticResource LabelCenterStyle}" Grid.ColumnSpan="3" Margin="0,0,199,0"/>
+                    <ListBox Name="listCustomers" ItemsSource="{Binding DisplayList}"  Grid.Row="1" Margin="10,10,10,10" DisplayMemberPath="CustomerDisplay" Grid.ColumnSpan="2">
                         <ListBox.DataContext>
                             <local:CustomerList/>
                         </ListBox.DataContext>
                     </ListBox>
-                    <Button x:Name="btnSelectCustomer" Content="Select Customer" Grid.Row="2"  Click="SelectCustomer" Style="{StaticResource ButtonStyle}"></Button>
+                    <Button x:Name="btnSelectCustomer" Content="Select Customer" Grid.Row="2"  Click="SelectCustomer" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="16,8,35,9"></Button>
 
-                    <Label Grid.Column="1" Grid.ColumnSpan="2" Content="Enter Customer Info" Style="{StaticResource LabelCenterStyle}"></Label>
-                    <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Label Grid.Column="2" Grid.ColumnSpan="2" Content="Enter Customer Info" Style="{StaticResource LabelCenterStyle}"></Label>
+                    <Grid Grid.Column="2" Grid.ColumnSpan="2" Margin="0,57,0,57" Grid.RowSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="1.5*"></ColumnDefinition>
@@ -255,11 +256,11 @@
                         <TextBox Name="txtContactNo" Grid.Row="6" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
                         <TextBox Name="txtEmail" Grid.Row="7" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
                     </Grid>
-                    <Button Name="btnQuitCustomer" Grid.Column="1" Grid.Row="2" Content="Go Back" DockPanel.Dock="Left" Click="QuitCustomer" Style="{StaticResource ButtonStyle}"></Button>
+                    <Button Name="btnQuitCustomer" Grid.Column="2" Grid.Row="2" Content="Go Back" Click="QuitCustomer" Style="{StaticResource ButtonStyle}" Margin="34,8,35,9"/>
 
-                    <Button Name="btnAddCustomer" Grid.Column="2" Grid.Row="2" Content="Add Customer" DockPanel.Dock="Left" Click="AddCustomer" Style="{StaticResource ButtonStyle}"></Button>
-                    <Label Grid.Column="3" Content="Enter Payment Info" Style="{StaticResource LabelCenterStyle}"></Label>
-                    <Grid Grid.Row="1" Grid.Column="3" Margin="10 0">
+                    <Button Name="btnAddCustomer" Grid.Column="3" Grid.Row="2" Content="Add Customer" Click="AddCustomer" Style="{StaticResource ButtonStyle}" Margin="34,8,34,9"/>
+                    <Label Grid.Column="3" Content="Enter Payment Info" Style="{StaticResource LabelCenterStyle}" Grid.ColumnSpan="2" Margin="198,0,0,0"></Label>
+                    <Grid Grid.Column="4" Margin="10,57,10,57" Grid.RowSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="1.5*"></ColumnDefinition>
@@ -280,13 +281,13 @@
                         <Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top">
                             <Label Content="{Binding StrPrice}" Name="txtAmountDue" VerticalAlignment="Top" FontSize="16">
                                 <Label.DataContext>
-                                <local:Order/>
-                            </Label.DataContext>
-                        </Label>
+                                    <local:Order/>
+                                </Label.DataContext>
+                            </Label>
                         </Border>
                     </Grid>
 
-                    <Button Name="btnPayForOrder" Grid.Column="3" Grid.Row="2" Content="Place Order" DockPanel.Dock="Left" Click="PayForOrder" Style="{StaticResource ButtonStyle}"></Button>
+                    <Button Name="btnPayForOrder" Grid.Column="4" Grid.Row="2" Content="Place Order" Click="PayForOrder" Style="{StaticResource ButtonStyle}" Margin="134,8,134,9"/>
 
                 </Grid>
             </TabItem>

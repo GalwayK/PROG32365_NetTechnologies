@@ -26,6 +26,7 @@ namespace A2KyleGalway
         private Order orderTemplate;
         private Customer customerTemplate;
 
+        // Constructor Method for MainWindow
         public MainWindow()
         {
             pizzaShop = PizzaShop.SingletonPizzaShopFactory();
@@ -35,8 +36,10 @@ namespace A2KyleGalway
             InitializeComponent();
         }
 
+        // Method to initialize all bindings to XAML controls
         private void InitializeWindowItems(object sender, RoutedEventArgs e)
         {
+            // Function to initialize add order item controls
             void initializePlaceOrderTab()
             {
                 listSideItems.ItemsSource = PizzaShop.PizzaShopListSideItems;
@@ -49,32 +52,38 @@ namespace A2KyleGalway
                 listAddTopping.ItemsSource = PizzaShop.ListPizzaToppings;
             }
 
+            // Function to initialize confirm order tab controls
             void initializeConfirmOrderTabItems()
             {
                 listOpenOrders.DataContext = pizzaShop.listOrders;
             }
 
+            // Function to initialize customer information tab controls
             void initializeCustomerInformationTabItems()
             {
 
                 listPaymentType.ItemsSource = PizzaShop.ListPaymentTypes;
-                listCustomers.DataContext = pizzaShop.customerList;
+                listCustomers.DataContext = pizzaShop.listCustomers;
             }
 
+            // Initialize all tab controls 
             initializePlaceOrderTab();
             initializeConfirmOrderTabItems();
             initializeCustomerInformationTabItems();
 
+            // Reset all model objects for the GUI
             ResetPizzaTemplate();
             ResetOrderTemplate();
             ResetCustomerTemplate();
         }
 
+        // Method to reset bindings for the PizzaItem model
         void ResetPizzaBindings()
         {
             lblPizzaTemplate.DataContext = pizzaItemTemplate;
         }
 
+        // Method to reset bindings for the Order model
         void ResetOrderBindings()
         {
             listSelectedItems.DataContext = orderTemplate;
@@ -90,16 +99,20 @@ namespace A2KyleGalway
             txtAmountDue.DataContext = orderTemplate;
         }
 
+        // Method to reset bindings for the Customer model
         void ResetCustomerBindings()
         {
             lblCustomer.DataContext = customerTemplate;
         }
+
+        // Method to reset Pizza model by creating new PizzaItem
         void ResetPizzaTemplate()
         {
             pizzaItemTemplate = PizzaShop.MakeNewPizza();
             ResetPizzaBindings();
         }
 
+        // Method to reset Order model by creating new Order or assigning last Order in list if Order is blank
         void ResetOrderTemplate()
         {
             Order lastOrder = pizzaShop.GetLastOrder();
@@ -116,6 +129,7 @@ namespace A2KyleGalway
             ResetAllOrderInputs();
         }
 
+        // Method to reset Customemr model by replacing customer with default
         void ResetCustomerTemplate()
         {
             customerTemplate = PizzaShop.DefaultCustomer;
@@ -123,18 +137,21 @@ namespace A2KyleGalway
             ResetCustomerInformationInputs();
         }
 
+        // Method to reset inputs for selected drink
         void ResetDrinkInputs()
         {
             listDrinkItems.SelectedIndex = 0;
             txtDrinkQuantity.Text = "1";
         }
 
+        // Method to reset inputs for selected side item
         void ResetSideInputs()
         {
             listSideItems.SelectedIndex = 0;
             txtSideQuantity.Text = "1";
         }
 
+        // Method to reset inputs for Pizza options inputs
         void ResetPizzaInputs()
         {
             listSize.SelectedIndex = 0;
@@ -143,6 +160,7 @@ namespace A2KyleGalway
             listAddTopping.SelectedIndex = 0;
         }
 
+        // Method to reset add item tab inputs
         void ResetPlaceOrderInputs()
         {
             ResetPizzaInputs();
@@ -150,18 +168,21 @@ namespace A2KyleGalway
             ResetDrinkInputs();
         }
 
+        // Method to reset confirm order tab inputs
         void ResetConfirmOrderInputs()
         {
             listOpenOrders.SelectedIndex = 0;
             listSelectedItems.SelectedIndex = 0;
         }
 
+        // Method to reset all order tab inputs
         void ResetAllOrderInputs()
         {
             ResetConfirmOrderInputs();
             ResetPlaceOrderInputs();
         }
 
+        // Method to reset customer information tab inputs
         void ResetCustomerInformationInputs()
         {
             txtAddress.Text = string.Empty;
@@ -176,6 +197,7 @@ namespace A2KyleGalway
             listPaymentType.SelectedIndex = 0;
         }
 
+        // Method to reset all inputs
         void ResetAllInputs()
         {
             ResetPlaceOrderInputs();
@@ -183,11 +205,13 @@ namespace A2KyleGalway
             ResetCustomerInformationInputs();
         }
 
+        // Method to add order to list of orders tracked by PizzaShop
         private void AddOrderToListOrders(Order order)
         {
             pizzaShop.AddOrderToListOrders(order);
         }
 
+        // Method for adding topping to PizzaItem model
         private void AddToppingToTemplatePizza(object sender, RoutedEventArgs e)
         {
             int toppingIndex = listAddTopping.SelectedIndex;
@@ -195,6 +219,7 @@ namespace A2KyleGalway
             pizzaShop.AddToppingToPizza(pizzaItemTemplate, toppingIndex);
         }
 
+        // Method for removing topping from PizzaItem model
         private void RemoveToppingFromTemplatePizza(object sender, RoutedEventArgs e)
         {
             int toppingIndex = listRemoveTopping.SelectedIndex;
@@ -202,6 +227,7 @@ namespace A2KyleGalway
             pizzaShop.RemoveToppingFromPizza(pizzaItemTemplate, toppingIndex);
         }
 
+        // Method for updating PizzaItem model type
         private void UpdatePizzaTemplateType(object sender, SelectionChangedEventArgs e)
         {
             int typeIndex = listType.SelectedIndex;
@@ -209,6 +235,7 @@ namespace A2KyleGalway
             pizzaShop.UpdatePizzaType(pizzaItemTemplate, typeIndex);
         }
 
+        // Method for updating PizzaItem model size
         private void UpdatePizzaTemplateSize(object sender, SelectionChangedEventArgs e)
         {
             int sizeIndex = listSize.SelectedIndex;
@@ -216,6 +243,7 @@ namespace A2KyleGalway
             pizzaShop.UpdatePizzaSize(pizzaItemTemplate, sizeIndex);
         }
 
+        // Method for Adding PizzaItem model to Order model
         private void AddPizzaToOrderTemplate(object sender, RoutedEventArgs e)
         {
             try
@@ -233,6 +261,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Method for adding SideItem to Order model
         private void AddSideToOrderTemplate(object sender, RoutedEventArgs e)
         {
             try
@@ -262,6 +291,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Method for adding DrinkItem to Order model
         private void AddDrinkToOrderTemplate(object sender, RoutedEventArgs e)
         {
             try
@@ -292,17 +322,20 @@ namespace A2KyleGalway
             }
         }
 
+        // Method for finalizing Order to change tab
         private void FinalizeOrder(object sender, RoutedEventArgs e)
         {
             MoveToConfirmOrderTab();
         }
 
+        // Method for creating new Order model on button click
         private void OrderAgain(object sender, RoutedEventArgs e)
         {
             PlaceNewOrder();
             MoveToPlaceOrderTab();
         }
 
+        // Method for creating a new Order model
         private void PlaceNewOrder()
         {
             pizzaShop.AddOrderToOrderList(orderTemplate);
@@ -310,6 +343,7 @@ namespace A2KyleGalway
             ResetOrderBindings();
         }
 
+        // Method for changing Order model to selected order
         private void SelectOrder(object sender, RoutedEventArgs e)
         {
             string strStatus = $"Error: Cannot select Complete or Cancelled order";
@@ -334,6 +368,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Method for removing item from Order model
         private void RemoveItemFromOrder(object sender, RoutedEventArgs e)
         {
             try
@@ -352,6 +387,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Method for cancelling selected Order and creating new Order model
         private void ClearOrder(object sender, RoutedEventArgs e)
         {
             pizzaShop.CancelOrder(orderTemplate);
@@ -360,11 +396,13 @@ namespace A2KyleGalway
             lblStatus.Content = "Order cancelled.";
         }
 
+        // Method for moving to Customer information tab on button click
         private void CheckoutOrder(object sender, RoutedEventArgs e)
         {
             MoveToCustomerInformationTab();
         }
 
+        // Button to add customer from customer information inputs
         private void AddCustomer(object sender, RoutedEventArgs e)
         {
             string firstName = txtFirstName.Text.Trim();
@@ -388,6 +426,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Method for changing selected Customer model
         private void SelectCustomer(object sender, RoutedEventArgs e)
         {
             try
@@ -411,6 +450,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Method for signing out of current customer
         private void QuitCustomer(object sender, RoutedEventArgs e)
         {
             if (customerTemplate == Customer.PlaceholderCustomer)
@@ -426,6 +466,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Method for paying for order on button click
         private void PayForOrder(object sender, RoutedEventArgs e)
         {
             try
@@ -457,6 +498,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Method for moving to Place OrderTab
         private void MoveToPlaceOrderTab()
         {
             TabOrder.Focus();
@@ -466,6 +508,7 @@ namespace A2KyleGalway
             ResetAllInputs();
         }
 
+        // Method for moving to Confirm Order tab
         private void MoveToConfirmOrderTab()
         {
             TabConfirm.Focus();
@@ -475,6 +518,7 @@ namespace A2KyleGalway
             ResetAllInputs();
         }
 
+        // Method for moving to Customer Information tab
         private void MoveToCustomerInformationTab()
         {
             TabCustomerInformation.Focus();
@@ -483,16 +527,19 @@ namespace A2KyleGalway
             ResetAllInputs();
         }
 
+        // Method for moving to Place Order tab on button click
         private void MoveToPlaceOrderTab(object sender, RoutedEventArgs e)
         {
             MoveToPlaceOrderTab();
         }
 
+        // Method for moving to Confirm Order tab on button click
         private void MoveToConfirmOrderTab(object sender, RoutedEventArgs e)
         {
             MoveToConfirmOrderTab();
         }
 
+        // Method for moving to Customer Information tab on button click
         private void MoveToCustomerInformationTab(object sender, RoutedEventArgs e)
         {
             MoveToCustomerInformationTab();

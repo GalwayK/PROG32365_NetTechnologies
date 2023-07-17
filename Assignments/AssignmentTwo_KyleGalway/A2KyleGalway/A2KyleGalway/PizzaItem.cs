@@ -14,11 +14,13 @@ namespace A2KyleGalway
 {
     internal class PizzaItem : OrderItem, INotifyPropertyChanged
     {
+        // WHhle heckin lot of fields to do things that are important
         public event PropertyChangedEventHandler PropertyChanged;
         public ListPizzaToppings listToppings;
         private PizzaSize pizzaSize;
         private PizzaType pizzaType;
 
+        // Blank constructor for object binding
         public PizzaItem()
         {
             this.listToppings = new ListPizzaToppings();
@@ -26,6 +28,7 @@ namespace A2KyleGalway
             this.pizzaType = PizzaItem.listAvailablePizzaTypes[0];
         }
 
+        // Constructor to generate PizzaItem
         public PizzaItem(PizzaSize pizzaSize, PizzaType pizzaType, ListPizzaToppings listToppings = null)
         {
             if (listToppings == null)
@@ -37,6 +40,7 @@ namespace A2KyleGalway
             this.pizzaType = pizzaType;
         }
 
+        // Add topping to Pizza
         public PizzaItem AddTopping(Topping topping)
         {
             if (!this.listToppings.Contains(topping))
@@ -50,6 +54,7 @@ namespace A2KyleGalway
             return this;
         }
 
+        // Remove topping from Pizza
         public PizzaItem RemoveTopping(Topping topping)
         {
             if (this.listToppings.Contains(topping))
@@ -61,6 +66,7 @@ namespace A2KyleGalway
             return this;
         }
 
+        // Change size of pizza
         public PizzaItem ChangeSize(PizzaSize size)
         {
             this.pizzaSize = size;
@@ -68,6 +74,7 @@ namespace A2KyleGalway
             return this;
         }
 
+        // Change type of pizza
         public PizzaItem ChangeType(PizzaType type)
         {
             this.pizzaType = type;
@@ -75,16 +82,19 @@ namespace A2KyleGalway
             return this;
         }
 
+        // Return ToString() as property for GUI binding
         public string PizzaString
         {
             get => this.ToString();
         }
 
+        // Overriden ToString()
         public override string ToString()
         {
             return $"{pizzaSize.strSize} {pizzaType.strType} with {listToppings}: {CalculatePrice():C}";
         }
 
+        // Calculate Price of Pizza based on toppings, size, and type
         public override decimal CalculatePrice()
         {
             decimal calcToppingPrice()
@@ -103,6 +113,7 @@ namespace A2KyleGalway
             return totalPrice;
         }
 
+        // All lists for toppings, sizes, and types 
         static List<string> listStrVegetableToppings = new List<string>() { "Pineapple", "Extra Cheese",
                      "Mushrooms", "Sun Dried Tomatoes", "Daikon", "Spinach",
                     "Roasted Garlic", "Jalapeno" };
@@ -118,6 +129,7 @@ namespace A2KyleGalway
         public static List<PizzaType> listAvailablePizzaTypes = CreateListAvailablePizzaTypes();
         public static List<PizzaSize> listAvailablePizzaSizes = CreateListAvailablePizzaSizes();
 
+        // Methods to generate all PizzaTypes, PizzaSizes, and Toppings as objects
         private static List<Topping> CreateListAvailableToppings()
         {
             List<Topping> listAvailableToppings = new List<Topping>();
@@ -185,6 +197,7 @@ namespace A2KyleGalway
             return listAvailablePizzaTypes;
         }
 
+        // Struct to determine Pizza Size
         public struct PizzaSize
         { 
             public string strSize;
@@ -206,6 +219,7 @@ namespace A2KyleGalway
             }
         }
 
+        // Struct to determine PizzaType
         public struct PizzaType
         {
             /* 

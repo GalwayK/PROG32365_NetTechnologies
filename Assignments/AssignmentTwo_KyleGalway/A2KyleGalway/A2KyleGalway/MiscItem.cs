@@ -9,9 +9,11 @@ namespace A2KyleGalway
 {
     internal class MiscItem: OrderItem
     {
+        // Lists for Side and Drink Items
         public static List<MiscItem> listDrinkItems = CreateListDrinkItems();
         public static List<MiscItem> listOtherItems = CreateListOtherItems();
 
+        // Constructor creating MiscItems
         public MiscItem(int itemId, string strName, decimal numPrice) 
         { 
             this.StrName = strName;
@@ -19,6 +21,7 @@ namespace A2KyleGalway
             this.ItemId = itemId;
         }
 
+        // Getters and Setters for MiscItem properties
         public int ItemId
         {
             get;
@@ -36,17 +39,20 @@ namespace A2KyleGalway
             get;
             set;
         }
-
+        
+        // Method to calculate price of item
         public override decimal CalculatePrice()
         {
             return NumPrice;
         }
 
+        // Overridden ToString of item
         public override string ToString() 
         {
             return $"{this.StrName}: {this.NumPrice:C}";
         }
 
+        // Method to create list of drink items in Pizza Shop
         private static List<MiscItem> CreateListDrinkItems()
         {
             List<MiscItem> listDrinks = new List<MiscItem>();
@@ -69,6 +75,7 @@ namespace A2KyleGalway
             return listDrinks;
         }
 
+        // Method to create list of side items for Pizza Shop
         private static List<MiscItem> CreateListOtherItems()
         {
             List<MiscItem> listOthers = new List<MiscItem>();
