@@ -1,0 +1,37 @@
+﻿<Application x:Class="A3KyleGalway.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:A3KyleGalway"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Width" Value="120"></Setter>
+        </Style>
+        <Style x:Key="labelTitle" TargetType="Label">
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="labelContent" TargetType="Label">
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="textContent" TargetType="TextBox">
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="comboContent" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+    </Application.Resources>
+</Application>

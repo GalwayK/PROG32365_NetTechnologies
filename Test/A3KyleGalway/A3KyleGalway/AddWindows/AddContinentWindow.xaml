@@ -1,0 +1,44 @@
+﻿<Window x:Class="A3KyleGalway.AddWindows.AddContinentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:A3KyleGalway.AddWindows"
+        mc:Ignorable="d"
+        Title="AddContinentWindow" 
+        Height="240" Width="600"
+        ResizeMode="NoResize">
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Label DockPanel.Dock="Left" Content="Status: "></Label>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Label Name="lblStatus" DockPanel.Dock="Left" Content="Loaded Add Continent Window"></Label>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width=".8*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="Add Continent" Grid.RowSpan="2" Grid.ColumnSpan="5" Style="{StaticResource labelTitle}"></Label>
+            <DockPanel Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="3" >
+                <Label DockPanel.Dock="Left" Content="Continent Name: " Style="{StaticResource labelContent}"></Label>
+                <TextBox Name="txtAddContinentName" DockPanel.Dock="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource textContent}"></TextBox>
+            </DockPanel>
+            <Button x:Name="btnAddContinent" Content="Add Continent" VerticalAlignment="Center" Grid.Row="3" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource buttonStyle}" Click="HandleAddContinent"></Button>
+            <Button x:Name="btnCloseWindow" Content="Close Window" VerticalAlignment="Center" Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource buttonStyle}" Click="CloseWindow"></Button>
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,75 @@
+﻿<Window x:Class="A3KyleGalway.AddWindows.AddCityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:A3KyleGalway.AddWindows"
+        mc:Ignorable="d"
+        Title="AddCityWindow" 
+        Height="320" Width="600"
+        ResizeMode="NoResize">
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Label DockPanel.Dock="Left" Content="Status: "></Label>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Label Name="lblStatus" DockPanel.Dock="Left" Content="Loaded Add City Window"></Label>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid DockPanel.Dock="Top" Loaded="InitializeControls">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".6*"></RowDefinition>
+            <RowDefinition Height=".6*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height=".6*"></RowDefinition>
+            <RowDefinition Height=".6*"></RowDefinition>
+        </Grid.RowDefinitions>
+            <Label Content="Add City" Grid.RowSpan="2" Grid.ColumnSpan="5" Style="{StaticResource labelTitle}"></Label>
+        <Grid Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.ColumnSpan="1" Content="Country Name: " Style="{StaticResource labelContent}" ></Label>
+            <ComboBox Grid.Column="2" Name="listAddCityCountry" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="25" Style="{StaticResource comboContent}" FontSize="16" ></ComboBox>
+        </Grid>
+        <Grid Grid.Row="3"  Grid.Column="1" Grid.ColumnSpan="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="City Name: " Style="{StaticResource labelContent}"></Label>
+            <TextBox Grid.Column="1" Name="txtAddCityName" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource textContent}"></TextBox>
+        </Grid>
+        <Grid Grid.Row="4"  Grid.Column="1" Grid.ColumnSpan="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Population: " Style="{StaticResource labelContent}"></Label>
+                <TextBox Name="txtAddCityPopulation" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource textContent}"></TextBox>
+        </Grid>
+        <Grid Grid.Row="5"  Grid.Column="1" Grid.ColumnSpan="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Is Capital: " Style="{StaticResource labelContent}"></Label>
+            <CheckBox Name="blnIsCaptial" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"></CheckBox>
+        </Grid>
+        <Button x:Name="btnAddCity" Content="Add City" VerticalAlignment="Center" Grid.Row="6" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource buttonStyle}" Click="AddCity"></Button>
+        <Button x:Name="btnCloseWindow" Content="Close Window" VerticalAlignment="Center" Grid.Row="6" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource buttonStyle}" Click="CloseWindow"></Button>
+    </Grid>
+    </DockPanel>
+</Window>

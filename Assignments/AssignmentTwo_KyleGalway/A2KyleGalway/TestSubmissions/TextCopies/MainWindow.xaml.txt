@@ -1,0 +1,296 @@
+﻿<Window x:Class="A2KyleGalway.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:A2KyleGalway" d:DataContext="{d:DesignInstance Type=local:PizzaItem}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="1000" ResizeMode="NoResize" Loaded="InitializeWindowItems"
+        Style="{StaticResource WindowStyle}">
+    <DockPanel LastChildFill="True">
+        <StatusBar DockPanel.Dock="Bottom">
+            <Grid Width="1000">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width=".5*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Label Content="Status: "></Label>
+                    <Label x:Name="lblStatus" Content="Application Launched"></Label>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" >
+                    <Label Content="Current Order ID: "></Label>
+                    <Label x:Name="lblOrder" Content="{Binding OrderID}">
+                        <Label.DataContext>
+                            <local:Order/>
+                        </Label.DataContext>
+                    </Label>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" >
+                    <Label Content="Current Customer: "></Label>
+                    <Label x:Name="lblCustomer" Content="{Binding FullName}">
+                        <Label.DataContext>
+                            <local:Customer/>
+                        </Label.DataContext>
+                    </Label>
+                </StackPanel>
+            </Grid>
+        </StatusBar>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Options" Name="mnuOptions" >
+                <MenuItem Header="Place an Order" Name="menuPlaceOrder" InputGestureText="Ctrl+1" Click="MoveToPlaceOrderTab" ></MenuItem>
+                <MenuItem Header="Confirm an Order" Name="menuConfirmOrder" InputGestureText="Ctrl+3" Click="MoveToConfirmOrderTab" />
+                <Separator />
+                <MenuItem Header="Enter Customer Information" Name="menuCustomerInformation" InputGestureText="Ctrl+2" Click="MoveToCustomerInformationTab" />
+            </MenuItem>
+        </Menu>
+        <TabControl DockPanel.Dock="Top">
+            <TabItem Name="TabOrder" Header="Place an Order">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Order a Pizza" Style="{StaticResource LabelCenterStyle}"></Label>
+                    <Label Grid.Row="0" Grid.Column="1" Content="Order a Side Item" Style="{StaticResource LabelCenterStyle}"></Label>
+                    <Label Grid.Row="0" Grid.Column="2" Content="Order a Drink" Style="{StaticResource LabelCenterStyle}"></Label>
+
+                    <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="False" Margin="40 0">
+                        <Button DockPanel.Dock="Left" Name="btnAddPizza" Content="Add Pizza" Click="AddPizzaToOrderTemplate" Style="{StaticResource ButtonStyle}"></Button>
+                        <Button DockPanel.Dock="Right" Name="btnConfirmOrder" Content="Finish Order" Click="FinalizeOrder" Style="{StaticResource ButtonStyle}"></Button>
+                    </DockPanel>
+
+                    <Button Name="btnAddSide"  Grid.Row="2" Grid.Column="1" Content="Add Side" Click="AddSideToOrderTemplate" Style="{StaticResource ButtonStyle}"></Button>
+                    <Button Name="btnAddDrink"  Grid.Row="2" Grid.Column="2" DockPanel.Dock="Right" Content="Add Drink" Click="AddDrinkToOrderTemplate" Style="{StaticResource ButtonStyle}"></Button>
+
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Name="listSize" VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2" SelectionChanged="UpdatePizzaTemplateSize"></ComboBox>
+                        <ComboBox Name="listType" VerticalAlignment="Center" Margin="10" Grid.Column="2" Grid.ColumnSpan="2" SelectionChanged="UpdatePizzaTemplateType"></ComboBox>
+
+                        <ComboBox Name="listAddTopping" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="8"></ComboBox>
+                        <ComboBox Name="listRemoveTopping" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="8"></ComboBox>
+
+                        <Button Content="Add Topping" Name="btnAddTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="1" Click="AddToppingToTemplatePizza" Style="{StaticResource ButtonStyle}"></Button>
+                        <Button Content="Remove Topping" Name="btnRemoveTopping" VerticalAlignment="Center" Margin="5" Grid.Column="3" Grid.Row="2" Click="RemoveToppingFromTemplatePizza" Style="{StaticResource ButtonStyle}"></Button>
+
+                        <Label Content="{Binding PizzaString}"  Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="4" Name="lblPizzaTemplate" />
+                    </Grid>
+                    <DockPanel Grid.Row="1" Grid.Column="1">
+                        <DockPanel DockPanel.Dock="Bottom" Width="160">
+                            <Label Content="Quantity: "></Label>
+                            <TextBox Text="1" Name="txtSideQuantity" Width="40" DockPanel.Dock="Left" Style="{StaticResource TextCenterStyle}"></TextBox>
+                        </DockPanel>
+                        <ListBox Name="listSideItems" DockPanel.Dock="Top" Margin="5 20" />
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="1" Grid.Column="2">
+                        <DockPanel DockPanel.Dock="Bottom" Width="120">
+                            <Label Content="Quantity: "></Label>
+                            <TextBox Text="1" Name="txtDrinkQuantity" Width="40" DockPanel.Dock="Left" Style="{StaticResource TextCenterStyle}"></TextBox>
+                        </DockPanel>
+                        <ListBox DockPanel.Dock="Top" Name="listDrinkItems" Margin="5 20" />
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabConfirm" Header="Confirm an Order">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="Select an Order" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelCenterStyle}"></Label>
+                    <ListBox ItemsSource="{Binding ListOrders}" Name="listOpenOrders" Grid.Row="1" Grid.Column="0" Margin="5" DisplayMemberPath="OrderString">
+                        <ListBox.DataContext>
+                            <local:OrderList/>
+                        </ListBox.DataContext>
+
+                    </ListBox>
+                    <Button Name="btnSelectOrder" Grid.Row="2" Grid.Column="0" Content="Select Order" Click="SelectOrder" Style="{StaticResource ButtonStyle}"></Button>
+                    <Label Content="Order Details" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource LabelCenterStyle}"></Label>
+                    <DockPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                        <DockPanel DockPanel.Dock="Bottom">
+                            <Label DockPanel.Dock="Left" Content="Total: " Width="100" HorizontalContentAlignment="Right"></Label>
+                            <Label Content="{Binding StrPrice}" Name="lblTotalCost" DockPanel.Dock="Bottom">
+                                <Label.DataContext>
+                                    <local:Order/>
+                                </Label.DataContext>
+                            </Label>
+                        </DockPanel>
+
+                        <DockPanel DockPanel.Dock="Bottom">
+                            <Label DockPanel.Dock="Left" Content="Tax: " Width="100" Height="30" HorizontalContentAlignment="Right"></Label>
+                            <Label Content="{Binding StrTaxPrice}" DockPanel.Dock="Right" Name="lblTax">
+                                <Label.DataContext>
+                                    <local:Order/>
+                                </Label.DataContext>
+                            </Label>
+                        </DockPanel>
+
+                        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+                            <Label DockPanel.Dock="Left" Content="Cost: " Width="100" HorizontalContentAlignment="Right"></Label>
+                            <DockPanel DockPanel.Dock="Left" Width="300">
+                                <Button DockPanel.Dock="Right" Name="btnRemoveItem" Grid.Column="0" Content="Remove Item" Click="RemoveItemFromOrder" Style="{StaticResource ButtonStyle}"></Button>
+
+                                <Label Content="{Binding StrTotalPrice}" DockPanel.Dock="Right" Name="lblCost" >
+                                    <Label.DataContext>
+                                        <local:Order/>
+                                    </Label.DataContext>
+                                </Label>
+                            </DockPanel>
+                        </DockPanel>
+
+                        <!-- <DataGrid DockPanel.Dock="Top" Name="gridData" AutoGenerateColumns="False" IsReadOnly="True" Canvas.Left="160" Canvas.Top="10">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                            <DataGridTextColumn Header="Author" Binding="{Binding Author}" Width="*"/>
+                            <DataGridTextColumn Header="Genre" Binding="{Binding Genre}" Width="*"/>
+                            <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="*"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>-->
+
+                        <DataGrid CanUserResizeColumns="False" CanUserResizeRows="False" DockPanel.Dock="Top" x:Name="listSelectedItems" IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Item Name" Binding="{Binding Key}" Width="2*"/>
+                                <DataGridTextColumn Header="Quantity" Binding="{Binding Value}" Width="*"/>
+                            </DataGrid.Columns>
+
+                            <DataGrid.DataContext>
+                                <local:Order/>
+                            </DataGrid.DataContext>
+                        </DataGrid>
+
+                    </DockPanel>
+
+                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button DockPanel.Dock="Left" Name="btnOrderAgain" Grid.Column="0" Content="Order Again" Click="OrderAgain" Style="{StaticResource ButtonStyle}"></Button>
+                        <Button DockPanel.Dock="Left" Name="btnClearOrder" Grid.Column="1" Content="Clear Order" Click="ClearOrder" Style="{StaticResource ButtonStyle}"></Button>
+                        <Button DockPanel.Dock="Left" Name="btnCheckout"  Grid.Column="2" Content="Finish Order" Click="CheckoutOrder" Style="{StaticResource ButtonStyle}"></Button>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Name="TabCustomerInformation" Header="Enter Customer Information">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="18*"></ColumnDefinition>
+                        <ColumnDefinition Width="180*"/>
+                        <ColumnDefinition Width="199*"></ColumnDefinition>
+                        <ColumnDefinition Width="199*"></ColumnDefinition>
+                        <ColumnDefinition Width="398*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Select Customer" Style="{StaticResource LabelCenterStyle}" Grid.ColumnSpan="3" Margin="0,0,199,0"/>
+                    <ListBox Name="listCustomers" ItemsSource="{Binding DisplayList}"  Grid.Row="1" Margin="10,10,10,10" DisplayMemberPath="CustomerDisplay" Grid.ColumnSpan="2">
+                        <ListBox.DataContext>
+                            <local:CustomerList/>
+                        </ListBox.DataContext>
+                    </ListBox>
+                    <Button x:Name="btnSelectCustomer" Content="Select Customer" Grid.Row="2"  Click="SelectCustomer" Style="{StaticResource ButtonStyle}" Grid.Column="1" Margin="16,8,35,9"></Button>
+
+                    <Label Grid.Column="2" Grid.ColumnSpan="2" Content="Enter Customer Info" Style="{StaticResource LabelCenterStyle}"></Label>
+                    <Grid Grid.Column="2" Grid.ColumnSpan="2" Margin="0,57,0,57" Grid.RowSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="First Name* : "></Label>
+                        <Label Grid.Row="1" Content="Last Name* : "></Label>
+                        <Label Grid.Row="2" Content="Address* : "></Label>
+                        <Label Grid.Row="3" Content="Province: "></Label>
+                        <Label Grid.Row="4" Content="City: "></Label>
+                        <Label Grid.Row="5" Content="Postal Code* : "></Label>
+                        <Label Grid.Row="6" Content="Contact No* : "></Label>
+                        <Label Grid.Row="7" Content="Email: "></Label>
+
+                        <TextBox Name="txtFirstName" Grid.Row="0" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
+                        <TextBox Name="txtLastName" Grid.Row="1" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
+                        <TextBox Name="txtAddress" Grid.Row="2" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
+                        <TextBox Name="txtProvince" Grid.Row="3" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
+                        <TextBox Name="txtCity" Grid.Row="4" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
+                        <TextBox Name="txtPostalCode" Grid.Row="5" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
+                        <TextBox Name="txtContactNo" Grid.Row="6" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
+                        <TextBox Name="txtEmail" Grid.Row="7" Grid.Column="1" Margin="3" Style="{StaticResource TextLeftStyle}"></TextBox>
+                    </Grid>
+                    <Button Name="btnQuitCustomer" Grid.Column="2" Grid.Row="2" Content="Go Back" Click="QuitCustomer" Style="{StaticResource ButtonStyle}" Margin="34,8,35,9"/>
+
+                    <Button Name="btnAddCustomer" Grid.Column="3" Grid.Row="2" Content="Add Customer" Click="AddCustomer" Style="{StaticResource ButtonStyle}" Margin="34,8,34,9"/>
+                    <Label Grid.Column="3" Content="Enter Payment Info" Style="{StaticResource LabelCenterStyle}" Grid.ColumnSpan="2" Margin="198,0,0,0"></Label>
+                    <Grid Grid.Column="4" Margin="10,57,10,57" Grid.RowSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Content="Card Number " Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" FontSize="16"></Label>
+                        <TextBox Name="txtCardNumber"  Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" Padding="3" Style="{StaticResource TextLeftStyle}"></TextBox>
+
+                        <Label Content="Payment Type " Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" FontSize="16"></Label>
+                        <ComboBox Name="listPaymentType" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top"></ComboBox>
+
+                        <Label Content="Amount Due " Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Bottom" VerticalAlignment="Bottom" FontSize="16"></Label>
+                        <Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top">
+                            <Label Content="{Binding StrPrice}" Name="txtAmountDue" VerticalAlignment="Top" FontSize="16">
+                                <Label.DataContext>
+                                    <local:Order/>
+                                </Label.DataContext>
+                            </Label>
+                        </Border>
+                    </Grid>
+
+                    <Button Name="btnPayForOrder" Grid.Column="4" Grid.Row="2" Content="Place Order" Click="PayForOrder" Style="{StaticResource ButtonStyle}" Margin="134,8,134,9"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

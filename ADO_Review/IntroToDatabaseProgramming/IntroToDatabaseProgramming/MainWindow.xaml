@@ -1,0 +1,48 @@
+﻿<Window x:Class="IntroToDatabaseProgramming.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntroToDatabaseProgramming"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="LoadEmployees">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Name="lblHeader" Content="Database Test Application!" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+        <Border Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="Black">
+            <DataGrid Name="listDatabaseItems" CanUserResizeRows="False" CanUserResizeColumns="False"/>
+        </Border>
+        <DockPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
+            <Label Content="Total # of Employees: " DockPanel.Dock="Left" FontSize="16" VerticalContentAlignment="Center"></Label>
+            <TextBox Name="txtCountEmployees" FontSize="16" DockPanel.Dock="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" IsReadOnly="True"></TextBox>
+        </DockPanel>
+        <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="txtFirstName" Grid.Column="0" VerticalAlignment="Center"></TextBox>
+            <TextBox Name="txtLasttName" Grid.Column="1" VerticalAlignment="Center"></TextBox>
+            <TextBox Name="txtTitle" Grid.Column="2" VerticalAlignment="Center"></TextBox>
+            <Button Name="btnAdd" DockPanel.Dock="Left" Content="Add Employee" Grid.Column="3" Click="addEmployee"></Button>
+        </Grid>
+    </Grid>
+</Window>

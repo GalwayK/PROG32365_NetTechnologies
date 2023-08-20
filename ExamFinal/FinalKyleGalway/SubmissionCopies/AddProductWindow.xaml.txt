@@ -1,0 +1,49 @@
+﻿<Window x:Class="FinalKyleGalway.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalKyleGalway"
+        mc:Ignorable="d"
+        Title="AddProductWindow" Height="300" Width="500"
+        ResizeMode="NoResize" Loaded="InitializeCategories">
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Label Content="Status: "></Label>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Label Name="lblStatus" Content=""></Label>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Add Product" Grid.ColumnSpan="6" Style="{StaticResource label-center-style}"></Label>
+            <Label Content="Product Name: " Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource label-left-style}"></Label>
+            <TextBox x:Name="txtProductName" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Style="{StaticResource textbox-left-style}"></TextBox>
+            <Label Content="Product Price: " Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource label-left-style}"></Label>
+            <TextBox x:Name="txtProductPrice" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Style="{StaticResource textbox-left-style}"></TextBox>
+
+            <Label Content="Category: " Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource label-left-style}"></Label>
+            <ComboBox Name="comboCategory" Grid.Row="3" Grid.Column="3" Margin="0" VerticalAlignment="Bottom" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Style="{StaticResource combo-style}"></ComboBox>
+
+            <Button Content="Add Product" Name="btnAddProduct" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource button-style}" Click="AddProduct"></Button>
+            <Button Content="Close Window" Name="btnCloseWindow" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource button-style}" Click="CloseWindow"></Button>
+
+        </Grid>
+    </DockPanel>
+</Window>

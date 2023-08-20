@@ -1,0 +1,75 @@
+﻿<Window x:Class="A3KyleGalway.AddCountryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:A3KyleGalway"
+        mc:Ignorable="d"
+        Title="AddCountryWindow" 
+        Height="350" Width="600"
+        ResizeMode="NoResize" Loaded="IntializeControls">
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Label DockPanel.Dock="Left" Content="Status: "></Label>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Label Name="lblStatus" DockPanel.Dock="Left" Content="Loaded Add Country Window"></Label>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".6*"></RowDefinition>
+                <RowDefinition Height=".6*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="Add Country" Grid.RowSpan="2" Grid.ColumnSpan="5" Style="{StaticResource labelTitle}"></Label>
+            <Grid Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.ColumnSpan="1" Content="Continent Name: " Style="{StaticResource labelContent}" HorizontalContentAlignment="Right"></Label>
+                <ComboBox Grid.Column="2" Name="listAddCountryContinent" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="25" FontSize="16" Style="{StaticResource comboContent}"></ComboBox>
+            </Grid>
+            <Grid Grid.Row="3"  Grid.Column="1" Grid.ColumnSpan="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Country Name: " Style="{StaticResource labelContent}" HorizontalContentAlignment="Right"></Label>
+                <TextBox Grid.Column="1" Name="txtAddCountryName" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource textContent}"></TextBox>
+            </Grid>
+            <Grid Grid.Row="4"  Grid.Column="1" Grid.ColumnSpan="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Spoken Language: " Style="{StaticResource labelContent}" HorizontalContentAlignment="Right"></Label>
+                <TextBox Name="txtAddCountryLanguage" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource textContent}"></TextBox>
+            </Grid>
+            <Grid Grid.Row="5"  Grid.Column="1" Grid.ColumnSpan="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Currency: " Style="{StaticResource labelContent}" HorizontalContentAlignment="Right"></Label>
+                <TextBox Name="txtAddCountryCurrency" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource textContent}"></TextBox>
+            </Grid>
+            <Button x:Name="btnAddCountry" Content="Add Country" VerticalAlignment="Center" Grid.Row="6" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource buttonStyle}" Click="AddCountry"></Button>
+            <Button x:Name="btnCloseWindow" Content="Close Window" VerticalAlignment="Center" Grid.Row="6" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource buttonStyle}" Click="CloseWindow"></Button>
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\MusicShop.csproj": {}
+    "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\MusicShop.csproj": {}
   },
   "projects": {
-    "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\MusicShop.csproj": {
+    "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\MusicShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\MusicShop.csproj",
+        "projectUniqueName": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\MusicShop.csproj",
         "projectName": "MusicShop",
-        "projectPath": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\MusicShop.csproj",
+        "projectPath": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\MusicShop.csproj",
         "packagesPath": "C:\\Users\\klg1\\.nuget\\packages\\",
-        "outputPath": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\obj\\",
+        "outputPath": "C:\\Semester4SDNE\\PROG32365_NetTechnologies\\Assignments\\AssignmentOne_KyleGalway\\AssignmentOne_KyleGalway\\MusicShop\\MusicShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
